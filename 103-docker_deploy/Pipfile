@@ -1,0 +1,16 @@
+[[source]]
+name = "pypi"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+django = "<3.0"
+waitress = "*"
+whitenoise = "*"
+psycopg2-binary = "<2.9"
+python-dotenv = "*"
+
+[requires]
+python_version = "3.6"
