@@ -17,3 +17,7 @@ django中使用多数据库示例
 ## 启动服务
 
     python manage.py runserver
+
+## 参考资料
+
+- https://medium.com/@akiva10b/microservice-infrastructure-with-django-8f985e86a057
