@@ -11,6 +11,7 @@ autopep8 = "*"
 django = "<3.0"
 djangorestframework = "*"
 drf-yasg = "*"
+djangorestframework-camel-case = "*"
 
 [requires]
 python_version = "3.6"
