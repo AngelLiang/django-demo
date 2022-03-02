@@ -4,6 +4,7 @@
 |------|------------------|------------------------------------------|
 | 000  | project_template | django项目模板                             |
 | 001  | apps_template    | django应用模板                             |
+| 002  | api_template     | django API 模板                            |
 | 101  | miniprogram      | django对接小程序                           |
 | 102  | apptoken         | AppToken应用示例                           |
 | 103  | docker_deploy    | 使用docker部署django（基于postgresql数据库） |
