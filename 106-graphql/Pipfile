@@ -1,0 +1,16 @@
+[[source]]
+name = "pypi"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+verify_ssl = true
+
+[dev-packages]
+flake8 = "*"
+autopep8 = "*"
+
+[packages]
+django = "<3.0"
+graphene-django = "*"
+django-filter = "*"
+
+[requires]
+python_version = "3.6"
