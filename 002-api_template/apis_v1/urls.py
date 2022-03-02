@@ -6,9 +6,9 @@ from .apis.token import (
     destory_token_view,
     ping_token_view,
 )
-from .apis.current_user import (
-    current_user_info_view,
-)
+from .apis.current_user import current_user_info_view
+from .apis.user_change_password import user_change_password_view
+
 
 urlpatterns = [
     # path('apis/v1/token', fetch_token_view),
@@ -16,7 +16,7 @@ urlpatterns = [
     path('apis/v1/logout', destory_token_view),
     path('apis/v1/ping', ping_token_view),
     path('apis/v1/currentUser', current_user_info_view),
-
+    path('apis/v1/changePassword', user_change_password_view),
 ]
 
 # 添加 swagger 文档
