@@ -13,5 +13,6 @@
 | 106  | graphql           | django 使用 graphql 示例                   |
 | 107  | django_river      | fork django-river                          |
 | 108  | field_permissions | django使用字段级权限                       |
+| 109  | celery4           | django 使用celery4 示例                    |
 
 
