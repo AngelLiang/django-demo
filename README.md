@@ -16,5 +16,6 @@
 | 109  | celery4           | django 使用 celery4 示例                   |
 | 110  | simpleui          | 使用 simpleui 优化 django 的界面示例       |
 | 111  | constance         | 使用 constance 动态修改 django 的配置示例  |
+| 112  | multiple_admin    | django 使用多个站点admin                   |
 
 
