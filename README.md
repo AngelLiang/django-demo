@@ -18,5 +18,6 @@
 | 111  | constance           | 使用 constance 动态修改 django 的配置示例  |
 | 112  | multiple_admin      | django 使用多个站点admin                   |
 | 113  | admin_list_editable | django admin 使用 list_editable 示例       |
+| 114  | signals             | 使用 django signals 示例                   |
 
 
