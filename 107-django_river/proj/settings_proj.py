@@ -6,6 +6,9 @@ TIME_ZONE = 'Asia/Shanghai'
 
 INSTALLED_APPS = INSTALLED_APPS + [
     'import_export',
-    'river'
+    'django_tables2',
+    'river',
+    'river_utils',
+    'ticket.apps.TicketConfig',
 ]
 
