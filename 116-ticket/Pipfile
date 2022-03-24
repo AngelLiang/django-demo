@@ -1,0 +1,16 @@
+[[source]]
+name = "pypi"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+django = "<3.0"
+django-river-utils = {path = "./packages/django-river-utils"}
+django-river = {editable = true,path = "./packages/django-river"}
+django-import-export = "*"
+six = "*"
+
+[requires]
+python_version = "3.6"
