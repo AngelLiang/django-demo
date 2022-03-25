@@ -41,7 +41,8 @@ class TransitionApproval(BaseModel):
 
     objects = TransitionApprovalManager()
 
-    name = models.CharField(verbose_name=_('名称'), max_length=40, null=True, blank=True)
+    name = models.CharField(verbose_name=_('名称'), max_length=40, default='', blank=True)
+    comment = models.CharField(verbose_name=_('批注'), max_length=255, default='', blank=True)
 
     content_type = models.ForeignKey(app_config.CONTENT_TYPE_CLASS, verbose_name=_('Content Type'), on_delete=CASCADE)
 
