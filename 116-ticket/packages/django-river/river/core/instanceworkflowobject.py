@@ -125,8 +125,7 @@ class InstanceWorkflowObject(object):
 
         return qs
 
-    # @atomic
-    def approve(self, as_user, next_state=None):
+    def approve(self, as_user, next_state=None, comment=''):
         from ..signals import pre_approve, post_approve  # add
 
         available_approvals = self.get_available_approvals(as_user=as_user)
@@ -150,6 +149,7 @@ class InstanceWorkflowObject(object):
             approval.transactioner = as_user
             approval.transaction_date = timezone.now()
             approval.previous = self.recent_approval
+            approval.comment = comment
             approval.save()
 
             if next_state:

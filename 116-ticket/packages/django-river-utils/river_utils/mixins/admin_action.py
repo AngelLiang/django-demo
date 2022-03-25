@@ -31,9 +31,10 @@ class RiverAdminActionMixin(admin.ModelAdmin):
             return self._get_obj_does_not_exist_redirect(request, self.opts, object_id)
 
         next_state = get_object_or_404(State, pk=next_state_id)
+        comment = request.data.get('comment', '')  # 批注
 
         try:
-            obj.river.status.approve(as_user=request.user, next_state=next_state)
+            obj.river.status.approve(as_user=request.user, next_state=next_state, comment=comment)
             # admin:<app>_<model>_changelist
             self.message_user(request, _('操作成功'), messages.SUCCESS)
             redirect_url = request.GET.get('redirect_url') or reverse(
