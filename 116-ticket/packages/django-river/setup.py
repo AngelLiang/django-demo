@@ -22,9 +22,9 @@ setup(
     long_description=long_description,
     install_requires=[
         "Django",
-        "django-mptt==0.9.1",
-        "django-cte==1.1.4",
-        "django-codemirror2==0.2"
+        "django-mptt>=0.9.1",
+        "django-cte>=1.1.4",
+        "django-codemirror2>=0.2"
     ],
     include_package_data=True,
     zip_safe=False,
