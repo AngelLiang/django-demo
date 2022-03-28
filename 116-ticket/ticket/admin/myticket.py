@@ -11,5 +11,5 @@ class MyTicketAdmin(TicketAdmin):
     list_display = ('order_no', 'order_date', 'title', 'status',)
 
     def get_queryset(self, request):
-        qs = super().get_queryset().filter(creator=request.user)
+        qs = super().get_queryset(request=request).filter(creator=request.user)
         return qs
