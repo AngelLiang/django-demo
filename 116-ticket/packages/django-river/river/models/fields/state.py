@@ -43,7 +43,6 @@ class StateField(models.ForeignKey):
     def contribute_to_class(self, cls, name, *args, **kwargs):
         if cls._meta.proxy is True:
             cls = cls.__base__
-            print(cls)
 
         @classproperty
         def river(_self):

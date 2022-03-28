@@ -27,6 +27,7 @@ class State(BaseModel):
     slug = models.SlugField(unique=True, null=True, blank=True)
     label = models.CharField(max_length=50)
     description = models.CharField(_("Description"), max_length=200, null=True, blank=True)
+    # can_edit = models.BooleanField(_('可编辑'), default=True)
 
     def __str__(self):
         return self.label

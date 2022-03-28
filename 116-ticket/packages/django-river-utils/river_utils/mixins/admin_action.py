@@ -115,10 +115,13 @@ class RiverAdminActionMixin(admin.ModelAdmin):
             />
         """
 
+    def get_available_approvals(self, obj, as_user):
+        return obj.river.status.get_available_approvals(as_user=as_user)
+
     def river_actions(self, obj):
         content = ""
         # 遍历
-        for transition_approval in obj.river.status.get_available_approvals(as_user=self._current_uesr):
+        for transition_approval in self.get_available_approvals(obj, as_user=self._current_uesr):
             content += self.create_river_button(obj, transition_approval)
 
         return mark_safe(content)
@@ -171,7 +174,8 @@ class RiverAdminActionMixin(admin.ModelAdmin):
             return self._get_obj_does_not_exist_redirect(request, self.opts, object_id)
 
         riveractions = []
-        qs = obj.river.status.get_available_approvals(as_user=request.user)
+        # qs = obj.river.status.get_available_approvals(as_user=request.user)
+        qs = self.get_available_approvals(obj, request.user)
         for transition_approval in qs:
             riveractions.append(self.create_river_action(request, obj, transition_approval))
 
