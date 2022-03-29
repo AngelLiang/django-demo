@@ -1,5 +1,5 @@
-from email.policy import default
 from django.contrib.auth.models import Group
+from django.contrib.auth.models import Permission
 from django.core.management.base import BaseCommand
 from django.db import transaction
 from river.models import TransitionApprovalMeta

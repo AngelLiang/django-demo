@@ -1,12 +1,16 @@
 from django.utils.translation import gettext_lazy as _
 
 from .ticket import Ticket
+# from river.models.fields.state import StateField
 
 
 class MyTicket(Ticket):
 
+    # status = StateField(verbose_name=_('流转状态'), editable=False)
+
     class Meta:
         proxy = True
+        managed = False
         verbose_name = _('我的工单')
         verbose_name_plural = _('我的工单')
         default_permissions = ()
@@ -21,5 +25,5 @@ class MyTicket(Ticket):
 
             # # 流程权限
             # ('open_myticket', _('允许提交工单')),
-            # ('resovle_myticket', _('允许处理工单')),
+            # ('resolve_myticket', _('允许处理工单')),
         )

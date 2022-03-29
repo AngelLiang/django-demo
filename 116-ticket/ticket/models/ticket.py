@@ -20,8 +20,7 @@ class Ticket(models.Model):
     number = models.PositiveIntegerField(_('单据号数'))
 
     title = models.CharField(_('标题'), max_length=100, null=False, blank=False)
-    content = models.TextField(
-        _('详情'), max_length=1024, default='', blank=True)
+    content = models.TextField(_('详情'), max_length=1024, default='', blank=True)
 
     status = StateField(verbose_name=_('流转状态'), editable=False)
 
@@ -53,8 +52,8 @@ class Ticket(models.Model):
             ('export_ticket', _('允许导出工单')),
 
             # 流程权限
-            ('open_ticket', _('允许提交工单')),
-            ('resovle_ticket', _('允许处理工单')),
+            ('submit_ticket', _('允许提交工单')),
+            ('resolve_ticket', _('允许处理工单')),
         )
 
     def initialize_prefix(self):
