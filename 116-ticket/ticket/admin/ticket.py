@@ -5,8 +5,11 @@ from river_utils.mixins import RiverAdminActionMixin
 
 
 class TicketAdmin(RiverAdminActionMixin, admin.ModelAdmin):
-    list_display = ('order_no', 'order_date', 'title', 'get_status', 'creator')
-    readonly_fields = ('order_no', 'creator', 'status', 'get_status')
+    list_display = ('order_no', 'order_date', 'title', 'get_status', 'creator', 'created_at')
+    readonly_fields = (
+        'order_no', 'creator', 'status', 'get_status',
+        'created_at', 'updated_at'
+    )
     fieldsets = (
         (None, {
             'fields': [
@@ -16,6 +19,8 @@ class TicketAdmin(RiverAdminActionMixin, admin.ModelAdmin):
                 'title',
                 'content',
                 'creator',
+                'created_at',
+                'updated_at',
             ]}),
     )
     change_form_template = 'admin/ticket/ticket/change_form.html'

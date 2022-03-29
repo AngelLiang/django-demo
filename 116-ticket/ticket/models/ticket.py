@@ -32,6 +32,9 @@ class Ticket(models.Model):
         related_name='+',
     )
 
+    created_at = models.DateTimeField(_('创建时间'), auto_now_add=True)
+    updated_at = models.DateTimeField(_('更新时间'), auto_now=True)
+
     def natural_key(self):
         return (self.no,)
 

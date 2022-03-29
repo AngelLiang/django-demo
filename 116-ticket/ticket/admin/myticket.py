@@ -6,7 +6,7 @@ from .ticket import TicketAdmin
 
 
 class MyTicketAdmin(TicketAdmin):
-    list_display = ('order_no', 'order_date', 'title', 'get_status',)
+    list_display = ('order_no', 'order_date', 'title', 'get_status', 'created_at')
 
     def has_change_permission(self, request, obj=None):
         if obj and obj.status == obj.river.status.workflow.initial_state:
