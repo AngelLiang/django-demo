@@ -27,7 +27,7 @@ class Command(BaseCommand):
 
         draft_state, _ = State.objects.update_or_create(slug=DRAFT, defaults={'label': '草稿'})
         approving_state, _ = State.objects.update_or_create(slug=APPROVING, defaults={'label': '审批中'})
-        pass_state, _ = State.objects.update_or_create(slug=PASS, defaults={'label': '通过'})
+        pass_state, _ = State.objects.update_or_create(slug=PASS, defaults={'label': '已通过'})
         nopass_state, _ = State.objects.update_or_create(slug=NOPASS, defaults={'label': '未通过'})
 
         workflow = Ticket.river.status.workflow \
