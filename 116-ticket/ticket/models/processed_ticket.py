@@ -12,10 +12,10 @@ class ProcessedTicket(Ticket):
         default_permissions = ()
         permissions = (
             # 功能权限
-            ('add_processedticket', _('允许添加已处理的工单')),
+            # ('add_processedticket', _('允许添加已处理的工单')),
             ('view_processedticket', _('允许查看已处理的工单')),
-            ('change_processedticket', _('允许修改已处理的工单')),
-            ('delete_processedticket', _('允许删除已处理的工单')),
-            ('import_processedticket', _('允许导入已处理的工单')),
+            # ('change_processedticket', _('允许修改已处理的工单')),
+            # ('delete_processedticket', _('允许删除已处理的工单')),
+            # ('import_processedticket', _('允许导入已处理的工单')),
             ('export_processedticket', _('允许导出已处理的工单')),
         )

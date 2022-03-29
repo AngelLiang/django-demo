@@ -5,10 +5,24 @@ from river_utils.mixins import RiverAdminActionMixin
 
 
 class TicketAdmin(RiverAdminActionMixin, admin.ModelAdmin):
-    list_display = ('order_no', 'order_date', 'title', 'get_status', 'creator', 'created_at')
+    list_display = ('order_no', 'order_date', 'title',
+                    'get_status', 'creator', 'created_at')
     readonly_fields = (
         'order_no', 'creator', 'status', 'get_status',
         'created_at', 'updated_at'
+    )
+    add_fieldsets = (
+        (None, {
+            'fields': [
+                # 'order_no',
+                # 'get_status',
+                'order_date',
+                'title',
+                'content',
+                'creator',
+                'created_at',
+                'updated_at',
+            ]}),
     )
     fieldsets = (
         (None, {
@@ -42,6 +56,13 @@ class TicketAdmin(RiverAdminActionMixin, admin.ModelAdmin):
         if not change:
             obj.creator = request.user
         return super().save_model(request, obj, form, change)
+
+    def get_fieldsets(self, request, obj=None):
+        if not obj and hasattr(self, 'add_fieldsets'):
+            return self.add_fieldsets
+        if obj and hasattr(self, 'unchangeable_fieldsets') and not self.has_change_permission(request, obj):
+            return self.unchangeable_fieldsets
+        return super().get_fieldsets(request, obj)
 
     # def has_change_permission(self, request, obj=None):
     #     if request.user.is_superuser:

@@ -8,6 +8,9 @@ from .ticket import TicketAdmin
 class AllTicketAdmin(TicketAdmin):
     list_display = ('order_no', 'order_date', 'title', 'get_status', 'creator')
 
+    def has_add_permission(self, request):
+        return False
+
     def has_change_permission(self, request, obj=None):
         if obj and obj.status == obj.river.status.workflow.initial_state:
             # 初始状态下可以编辑

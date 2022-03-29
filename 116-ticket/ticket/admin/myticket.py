@@ -12,7 +12,7 @@ class MyTicketAdmin(TicketAdmin):
         if obj and obj.status == obj.river.status.workflow.initial_state:
             # 初始状态下可以编辑
             return True
-        return False
+        return super().has_change_permission(request, obj)
 
     def has_delete_permission(self, request, obj=None):
         if obj and obj.status == obj.river.status.workflow.initial_state:

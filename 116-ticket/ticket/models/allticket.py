@@ -17,11 +17,11 @@ class AllTicket(Ticket):
         default_permissions = ()
         permissions = (
             # 功能权限
-            ('add_allticket', _('允许添加所有工单')),
+            # ('add_allticket', _('允许添加所有工单')),
             ('view_allticket', _('允许查看所有工单')),
-            ('change_allticket', _('允许修改所有工单')),
-            ('delete_allticket', _('允许删除所有工单')),
-            ('import_allticket', _('允许导入所有工单')),
+            # ('change_allticket', _('允许修改所有工单')),
+            # ('delete_allticket', _('允许删除所有工单')),
+            # ('import_allticket', _('允许导入所有工单')),
             ('export_allticket', _('允许导出所有工单')),
 
             # # 流程权限

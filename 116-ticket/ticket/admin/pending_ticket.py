@@ -9,6 +9,9 @@ from .ticket import TicketAdmin
 class PendingTicketAdmin(TicketAdmin):
     list_display = ('order_no', 'order_date', 'title', 'get_status', 'creator')
 
+    def has_add_permission(self, request):
+        return False
+
     def get_queryset(self, request):
         qs = super().get_queryset(request)
 
