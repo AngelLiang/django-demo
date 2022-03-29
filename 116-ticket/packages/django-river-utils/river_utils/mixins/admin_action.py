@@ -19,7 +19,10 @@ from ..tables import TransitionApprovalTable
 from django.utils.translation import ugettext_lazy as _
 
 
-class RiverAdminActionMixin(admin.ModelAdmin):
+class RiverAdminActionMixin:
+    """
+    继承的时候，模板可能会出错
+    """
 
     def get_list_display(self, request):
         self._current_uesr = request.user  # 获取当前用户
