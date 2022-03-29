@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "acbf8cf4ea66e034a44ea0089e97483003070cf3d9f34d47656ed5157f1c3600"
+            "sha256": "fab4a5322caf64d4d6e55fc806d37f38b3b5e7d81d93a02569c7d8e839367e76"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -46,10 +46,10 @@
         },
         "django-cte": {
             "hashes": [
-                "sha256:54e32f19162c58d8e7c8919d7243e5a536ca7dd62bae245219a769008df5d458",
-                "sha256:be29d81c6104138c19da7b994724a76e5436b9f36d1c880b3f0c5bf2d2e1b94a"
+                "sha256:32296007cfc820d55b01e2fdfcc9d7c39e0f470cf4c64ac7d321e7aadf8f9a3b",
+                "sha256:eceb36657efcf9f0a10b1be0da1ca76fe37c73f015962457edb54d356d87a4b4"
             ],
-            "version": "==1.1.4"
+            "version": "==1.1.5"
         },
         "django-import-export": {
             "hashes": [
@@ -68,17 +68,25 @@
         },
         "django-mptt": {
             "hashes": [
-                "sha256:18a41d1b56ca7c02a5b04d246e33ee2d18f6ee5459c02ed1d945f5abdef23a2e",
-                "sha256:689a04cce0981671d6061a9928c33a16b47abb0d4cd43cf7dec31ae284fdae9d"
+                "sha256:75745b621ae31d97957ed924155a750dfa8cacd9543799ada2d713fd6bc3f5c7",
+                "sha256:80c9fb34df7796a4e5af0cb6b8ade3697555b1aa438bd07a01f32b3ab5202b63"
             ],
-            "version": "==0.9.1"
+            "version": "==0.13.4"
         },
         "django-river": {
             "editable": true,
             "path": "./packages/django-river"
         },
         "django-river-utils": {
+            "editable": true,
             "path": "./packages/django-river-utils"
+        },
+        "django-tables2": {
+            "hashes": [
+                "sha256:50762bf3d7c61a4eb70e763c3e278650d7266bb78d0497fc8fafcf4e507c9a64",
+                "sha256:6c72dd208358539e789e4c0efd7d151e43283a4aa4093a35f44c43489e7ddeaa"
+            ],
+            "version": "==2.4.1"
         },
         "et-xmlfile": {
             "hashes": [

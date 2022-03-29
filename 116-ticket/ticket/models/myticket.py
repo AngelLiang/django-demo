@@ -30,7 +30,7 @@ class MyTicket(Ticket):
         )
 
 
-# 代理模型需要添加下面两个信号处理，否则可能初始化不成功
+# 代理模型需要添加下面两个信号处理，否则添加的时候，可能流程状态初始化不成功
 post_save.connect(_on_workflow_object_saved, MyTicket, False,
                   dispatch_uid='%s_%s_riverstatefield_post' % (MyTicket, 'status'))
 post_delete.connect(_on_workflow_object_deleted, MyTicket, False,

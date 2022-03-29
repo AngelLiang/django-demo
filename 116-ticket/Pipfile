@@ -7,7 +7,7 @@ verify_ssl = true
 
 [packages]
 django = "<3.0"
-django-river-utils = {path = "./packages/django-river-utils"}
+django-river-utils = {editable = true,path = "./packages/django-river-utils"}
 django-river = {editable = true,path = "./packages/django-river"}
 django-import-export = "*"
 six = "*"
