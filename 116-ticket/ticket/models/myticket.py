@@ -1,12 +1,13 @@
 from django.utils.translation import gettext_lazy as _
+from django.db.models.signals import pre_save, post_save, post_delete
+from django.dispatch import receiver
 
 from .ticket import Ticket
 # from river.models.fields.state import StateField
+from river.models.fields.state import _on_workflow_object_saved, _on_workflow_object_deleted
 
 
 class MyTicket(Ticket):
-
-    # status = StateField(verbose_name=_('流转状态'), editable=False)
 
     class Meta:
         proxy = True
@@ -27,3 +28,10 @@ class MyTicket(Ticket):
             # ('open_myticket', _('允许提交工单')),
             # ('resolve_myticket', _('允许处理工单')),
         )
+
+
+# 代理模型需要添加下面两个信号处理，否则可能初始化不成功
+post_save.connect(_on_workflow_object_saved, MyTicket, False,
+                  dispatch_uid='%s_%s_riverstatefield_post' % (MyTicket, 'status'))
+post_delete.connect(_on_workflow_object_deleted, MyTicket, False,
+                    dispatch_uid='%s_%s_riverstatefield_post' % (MyTicket, 'status'))

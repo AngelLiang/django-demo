@@ -18,7 +18,7 @@ class TicketAdmin(RiverAdminActionMixin, admin.ModelAdmin):
                 'creator',
             ]}),
     )
-    # change_form_template = 'admin/ticket/ticket/change_form.html'
+    change_form_template = 'admin/ticket/ticket/change_form.html'
 
     def get_changeform_initial_data(self, request):
         return {
