@@ -5,10 +5,14 @@ from river_utils.mixins import RiverAdminActionMixin
 
 
 class TicketAdmin(RiverAdminActionMixin, admin.ModelAdmin):
+    search_fields = ('order_no', 'title')
+    date_hierarchy = 'order_date'
+    sortable_by = ()
     list_display = ('order_no', 'order_date', 'title',
                     'get_status', 'creator', 'created_at')
     readonly_fields = (
-        'order_no', 'creator', 'status', 'get_status',
+        'order_no',
+        'creator', 'status', 'get_status',
         'created_at', 'updated_at'
     )
     add_fieldsets = (
