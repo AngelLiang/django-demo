@@ -34,7 +34,7 @@ class RiverAdminActionMixin:
             return self._get_obj_does_not_exist_redirect(request, self.opts, object_id)
 
         next_state = get_object_or_404(State, pk=next_state_id)
-        comment = request.data.get('comment', '')  # 批注
+        comment = request.POST.get('comment', '')  # 批注
 
         try:
             obj.river.status.approve(as_user=request.user, next_state=next_state, comment=comment)
