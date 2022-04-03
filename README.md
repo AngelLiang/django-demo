@@ -20,5 +20,7 @@
 | 113  | admin_list_editable | django admin 使用 list_editable 示例       |
 | 114  | signals             | 使用 django signals 示例                   |
 | 115  | order_no            | 生成单据号示例                             |
-
+| 116  | ticket              | 工单示例                                   |
+| 117  | apiadmin            | apiadmin使用示例                           |
+| 118  | settings_db         | 配置多个数据库示例                         |
 
