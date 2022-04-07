@@ -1,0 +1,13 @@
+from django.contrib import admin
+
+from ..forms import {{camel_case_app_name}}Form
+
+class {{camel_case_app_name}}Admin(admin.ModelAdmin):
+    add_fieldsets = None
+
+    form = {{camel_case_app_name}}Form
+
+    def get_fieldsets(self, request, obj=None):
+        if not obj and hasattr(self, 'add_fieldsets'):
+            return self.add_fieldsets
+        return super().get_fieldsets(request, obj)
