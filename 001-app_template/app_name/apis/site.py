@@ -1,12 +1,12 @@
 from django_restful_admin import RestFulAdminSite as _RestFulAdminSite
 
-from .router import ReadOnlyRouter
+from django_restful_admin.router import DefaultRouter
 
 
 class RestFulAdminSite(_RestFulAdminSite):
 
     def get_router(self):
-        return ReadOnlyRouter()
+        return DefaultRouter()
 
 
 apiadmin_site = RestFulAdminSite()
