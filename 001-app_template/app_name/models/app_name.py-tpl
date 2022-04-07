@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-class {{camel_case_app_name}}(models.Models):
+class {{camel_case_app_name}}(models.Model):
     name = models.CharField(_('Name'), max_length=40)
 
     created_at = models.DateTimeField(_('创建时间'), auto_now_add=True)
