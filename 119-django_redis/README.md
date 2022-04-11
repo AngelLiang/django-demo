@@ -1,5 +1,7 @@
 # django redis
 
+    pipenv install django-redis
+
 ## 访问缓存
 
     python manage.py shell
