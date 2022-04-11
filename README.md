@@ -23,4 +23,5 @@
 | 116  | ticket              | 工单示例                                   |
 | 117  | apiadmin            | apiadmin使用示例                           |
 | 118  | settings_db         | 配置多个数据库示例                         |
+| 119  | django_redis        | django使用redis作为缓存示例                |
 
