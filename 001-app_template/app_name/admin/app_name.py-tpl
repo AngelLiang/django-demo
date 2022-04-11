@@ -1,13 +1,27 @@
 from django.contrib import admin
+from import_export.formats.base_formats import XLS, XLSX
 
 from ..forms.{{app_name}} import {{camel_case_app_name}}Form
+from ..resources.{{app_name}} import {{camel_case_app_name}}Resource
 
 class {{camel_case_app_name}}Admin(admin.ModelAdmin):
+    search_fields = ('name',)
+    list_display = ('name',)
+    list_filter = ()
+    sortable_by = ()
     add_fieldsets = None
 
     form = {{camel_case_app_name}}Form
+    resource_class = {{camel_case_app_name}}Resource
+    formats = (XLSX,)
 
     def get_fieldsets(self, request, obj=None):
         if not obj and getattr(self, 'add_fieldsets', None):
             return self.add_fieldsets
         return super().get_fieldsets(request, obj)
+
+    def save_model(self, request, obj, form, change):
+        if not change:
+            obj.creator = request.user
+        obj.updator = request.user
+        return super().save_model(request, obj, form, change)
