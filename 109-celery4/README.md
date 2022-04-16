@@ -25,3 +25,4 @@
     > python manage.py shell
     >>> from task import tasks
     >>> tasks.add.delay(8, 8)
+    >>> tasks.add.apply_async(args=(8, 8))
