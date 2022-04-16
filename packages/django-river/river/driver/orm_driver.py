@@ -57,6 +57,7 @@ class OrmDriver(RiverDriver):
             permission_q = permission_q | Q(permissions__content_type__app_label=label,
                                             permissions__codename=codename)
 
+        # 如果权限和权限组不为空，必须两者都分配了才有权限操作
         return TransitionApproval.objects.filter(
             Q(workflow=self.workflow, status=PENDING) &
             (
