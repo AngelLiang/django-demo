@@ -12,4 +12,4 @@ class ItemAdmin(ItemImportAdminMixin, ImportExportMixin, admin.ModelAdmin):
     resource_class = ItemResource
     formats = (XLSX,)
 
-    item_import_redirect_reverse_url = 'admin:order_order_change'
+    import_redirect_reverse_url = 'admin:order_order_change'
