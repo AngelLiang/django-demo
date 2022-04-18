@@ -3,7 +3,7 @@ from import_export import widgets
 from import_export.fields import Field
 
 from ..models import Item
-from import_item.mixins.resource import ItemResourceMixin
+from object_import_item.mixins.resource import ItemResourceMixin
 
 from django.contrib.auth import get_user_model
 User = get_user_model()

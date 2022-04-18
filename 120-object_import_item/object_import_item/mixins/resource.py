@@ -12,8 +12,8 @@ class ItemResourceMixin:
 
     def init_instance(self, row=None):
         instance = super().init_instance(row)
-        master_id=self.get_master_id()
-        setattr(instance, self.master_id_field,master_id)
+        master_id = self.get_master_id()
+        setattr(instance, self.master_id_field, master_id)
         return instance
 
     def get_instance(self, instance_loader, row):

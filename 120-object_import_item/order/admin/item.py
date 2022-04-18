@@ -4,7 +4,7 @@ from import_export.admin import ImportExportMixin
 
 # from ..forms.order import OrderForm
 from ..resources.item import ItemResource
-from import_item.mixins.admin_item_import import ItemImportAdminMixin
+from object_import_item.mixins.admin_item_import import ItemImportAdminMixin
 
 
 # ItemImportAdminMixin 需要放到 ImportExportMixin 前面

@@ -6,6 +6,6 @@ TIME_ZONE = 'Asia/Shanghai'
 
 INSTALLED_APPS = [
     'import_export',
-    'import_item',
+    'object_import_item',
     'order',
 ] + INSTALLED_APPS
