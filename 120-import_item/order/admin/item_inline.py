@@ -11,3 +11,4 @@ class ItemInline(admin.TabularInline):
     model = Item
     extra = 0
     fields = ('product_name', 'price', 'quantity')
+    readonly_fields = fields
