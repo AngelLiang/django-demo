@@ -3,12 +3,12 @@
 class ItemResourceMixin:
     master_id_field = 'master_id'
 
-    def __init__(self, request):
+    def __init__(self, request=None):
         self.request = request
         super().__init__()
 
     def get_master_id(self):
-        return self.request.GET.get('master_id')
+        return self.request.GET.get('master_id') if self.request else None
 
     def init_instance(self, row=None):
         instance = super().init_instance(row)
