@@ -24,6 +24,10 @@ class ItemExportAdminMixin:
         return super().export_action(request)
 
     def get_export_queryset(self, request):
+        is_template = request.GET.get('_is_template', None)
+        print(is_template)
+        if is_template:
+            return self.model.objects.none()
         master_id = request.GET.get('master_id')
         queryset = super().get_export_queryset(request)
         return queryset
