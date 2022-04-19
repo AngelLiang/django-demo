@@ -28,7 +28,7 @@ class ItemResourceMixin:
                 return
 
         try:
-            params = {self.get_master_id_field: self.get_master_id()}
+            params = {self.master_id_field: self.get_master_id()}
             for key in self.get_import_id_fields():
                 field = self.fields[key]
                 params[field.attribute] = field.clean(row)
