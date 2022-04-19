@@ -21,6 +21,7 @@ class ItemExportAdminMixin:
         return my_urls + urls
 
     def import_template(self, request, *args, **kwargs):
+        """导入模板"""
         formats = self.get_export_formats()
         file_format = formats[0]()
 
@@ -53,6 +54,6 @@ class ItemExportAdminMixin:
         request = kwargs.pop("request")
 
         resource_class = self.get_export_resource_class()
-        data = resource_class(**self.get_export_resource_kwargs(request)).export(queryset, *args, **kwargs)
+        data = resource_class(**self.get_export_resource_kwargs(request)).get_template(*args, **kwargs)
         export_data = file_format.export_data(data)
         return export_data

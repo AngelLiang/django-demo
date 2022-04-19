@@ -30,3 +30,10 @@ class ItemResource(ItemResourceMixin, resources.ModelResource):
         model = Item
         fields = '__all__'
         import_id_fields = ('id',)
+
+    def get_template_fields(self):
+        return [
+            self.fields['product_name'],
+            self.fields['price'],
+            self.fields['quantity']
+        ]
