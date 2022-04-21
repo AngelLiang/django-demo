@@ -23,7 +23,7 @@ class Workflow(BaseModel):
 
     def natural_key(self):
         return self.content_type.natural_key() + (self.field_name,)
-    natural_key.dependencies = ['contenttypes.content_type']
+    natural_key.dependencies = ['contenttypes.ContentType']
 
     def __str__(self):
         if self.content_type:
