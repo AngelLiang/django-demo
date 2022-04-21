@@ -22,10 +22,8 @@ class Workflow(BaseModel):
                                       related_name='workflow_this_set_as_initial_state', on_delete=PROTECT)
 
     def natural_key(self):
-        return self.content_type.natural_key() + (self.field_name,)
-    natural_key.dependencies = ['contenttypes.ContentType']
+        return self.content_type, self.field_name
+    # natural_key.dependencies = ['contenttypes.ContentType']
 
     def __str__(self):
-        if self.content_type:
-            return "%s.%s" % (self.content_type.model, self.field_name)
-        return super().__str__()
+        return "%s.%s" % (self.content_type.model, self.field_name)
