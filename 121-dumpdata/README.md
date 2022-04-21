@@ -4,3 +4,6 @@
 
     python manage.py dumpdata --natural-foreign --natural-primary -e contenttypes -e auth.Permission --indent 2 > dump.json
 
+导入命令
+
+    python manage.py loaddata dump.json
