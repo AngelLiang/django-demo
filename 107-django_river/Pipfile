@@ -9,10 +9,10 @@ autopep8 = "*"
 
 [packages]
 django = "<3.0"
-django-river = {editable = true,path = "./django-river"}
+django-river = {editable = true,path = "./../packages/django-river"}
 django-import-export = "*"
 six = "*"
-django-river-utils = {editable = true,path = "./django-river-utils"}
+django-river-utils = {editable = true,path = "./../packages/django-river-utils"}
 
 [requires]
 python_version = "3.6"

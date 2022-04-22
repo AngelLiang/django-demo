@@ -1,1 +1,0 @@
-from .transitionapproval import TransitionApprovalTable

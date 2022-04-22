@@ -1,3 +1,0 @@
-include README.md
-include *.txt
-include river/sql/mssql/get_available_approvals.sql
