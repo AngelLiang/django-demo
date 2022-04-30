@@ -1,4 +1,4 @@
-CREATE TEMPORARY TABLE approvals_with_min_priority (
+CREATE TEMPORARY TABLE IF NOT EXISTS approvals_with_min_priority (
     workflow_id INT
     , transition_id INT
     , object_id INT
@@ -14,7 +14,7 @@ INSERT INTO approvals_with_min_priority(workflow_id, transition_id, object_id, m
     AND status = 'pending'
     group by workflow_id, transition_id, object_id;
 
-CREATE TEMPORARY TABLE authorized_approvals (
+CREATE TEMPORARY TABLE IF NOT EXISTS authorized_approvals (
     id INT
     , workflow_id INT
     , transition_id INT
@@ -39,7 +39,7 @@ INSERT INTO authorized_approvals (id, workflow_id, transition_id, source_state_i
     AND (tap.id is null or tap.permission_id in ('%(permission_ids)s'))
     AND (tag.id is null or tag.group_id in ('%(group_ids)s'));
 
-CREATE TEMPORARY TABLE approvals_with_max_priority (
+CREATE TEMPORARY TABLE IF NOT EXISTS approvals_with_max_priority (
     id INT
     , object_id INT
     , source_state_id INT
