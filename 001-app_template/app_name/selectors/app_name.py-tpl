@@ -1,0 +1,7 @@
+from type import Iterable
+
+from ..models import {{camel_case_app_name}}
+
+
+def {{app_name}}_list(*args, *kwargs) -> Iterable[{{camel_case_app_name}}]:
+    return {{camel_case_app_name}}.objects.filter(*args, *kwargs)
