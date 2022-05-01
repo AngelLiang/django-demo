@@ -1,0 +1,34 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls static admin_list %}
+
+{% block object-tools %}
+    <ul class="object-tools">
+      {% block object-tools-items %}
+        {% comment %} {% include "admin/import_export/change_list_import_item.html" %} {% endcomment %}
+        {% comment %} {% include "admin/import_export/change_list_export_item.html" %} {% endcomment %}
+
+  		  {% comment %} <li>
+      		<form action="email-sync/" method="POST">
+          		{% csrf_token %}
+          		<button type="submit">上传数据</button>
+      		</form>
+  		  </li> {% endcomment %}
+
+        <li>
+          {% url cl.opts|admin_urlname:'upload_data' as upload_data_url %}
+          <a href="{% add_preserved_filters upload_data_url %}" onclick="self.parent.app.$msgbox('msg')">
+            上传数据
+          </a>
+        </li>
+
+        <li>
+          {% url cl.opts|admin_urlname:'download_data' as download_data_url %}
+          <a href="{% add_preserved_filters download_data_url %}" onclick="self.parent.app.$msgbox('msg')">
+            下载数据
+          </a>
+        </li>
+
+        {% change_list_object_tools %}
+      {% endblock %}
+    </ul>
+{% endblock %}
