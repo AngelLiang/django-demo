@@ -40,12 +40,17 @@ class EmailSyncLogAdmin(admin.ModelAdmin):
     def upload_data_view(self, request, extra_context=None):
         from_ = os.getenv('MAIL_FROM', 'from')
         to = os.getenv('MAIL_TO', 'to')
-        send_email(from_, to, 'subject')
+        try:
+            send_email(from_, to, 'subject')
+        except EmailSyncError as e:
+            msg = e.message
+            self.message_user(request, msg, messages.ERROR)
+        else:
+            self.message_user(request, '上传成功', messages.SUCCESS)
         url = reverse(
             f'admin:{self.opts.app_label}_{self.opts.model_name}_changelist',
             current_app=self.admin_site.name,
         )
-        self.message_user(request, '上传成功', messages.SUCCESS)
         return HttpResponseRedirect(url)
 
     def download_data_view(self, request, extra_context=None):

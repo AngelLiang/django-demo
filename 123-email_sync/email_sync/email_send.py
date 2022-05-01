@@ -2,6 +2,7 @@ import os
 import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
+from .exceptions import EmailSyncError
 
 # 第三方 SMTP 服务
 mail_host = os.getenv('MAIL_HOST')
@@ -31,3 +32,5 @@ def send_email(from_, to, subject):
         print("邮件发送成功")
     except smtplib.SMTPException:
         print("Error: 无法发送邮件")
+    except ConnectionRefusedError:
+        raise EmailSyncError('服务器连接失败')
