@@ -9,10 +9,12 @@ from .models import EmailSyncLog
 from .email_send import send_email
 from .email_read import read_email
 from .exceptions import EmailSyncError
+from .services import emailsynclog_add_upload_log, emailsynclog_add_download_log
 
 
 class EmailSyncLogAdmin(admin.ModelAdmin):
-    list_display = ('operate_at', 'operater')
+    list_filter = ('operate_type', 'is_success')
+    list_display = ('operate_at', 'operate_type', 'is_success', 'operater')
 
     change_list_template = 'admin/email_sync/email_sync/change_list.html'
 
@@ -44,8 +46,11 @@ class EmailSyncLogAdmin(admin.ModelAdmin):
         except EmailSyncError as e:
             msg = e.message
             self.message_user(request, msg, messages.ERROR)
+            emailsynclog_add_upload_log(
+                operater=request.user, is_success=False)
         else:
             self.message_user(request, '上传成功', messages.SUCCESS)
+            emailsynclog_add_upload_log(operater=request.user, is_success=True)
         url = reverse(
             f'admin:{self.opts.app_label}_{self.opts.model_name}_changelist',
             current_app=self.admin_site.name,
@@ -58,8 +63,12 @@ class EmailSyncLogAdmin(admin.ModelAdmin):
         except EmailSyncError as e:
             msg = e.message
             self.message_user(request, msg, messages.ERROR)
+            emailsynclog_add_download_log(
+                operater=request.user, is_success=False)
         else:
             self.message_user(request, '下载成功', messages.SUCCESS)
+            emailsynclog_add_download_log(
+                operater=request.user, is_success=True)
         url = reverse(
             f'admin:{self.opts.app_label}_{self.opts.model_name}_changelist',
             current_app=self.admin_site.name,

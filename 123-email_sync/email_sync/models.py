@@ -27,6 +27,7 @@ class EmailSyncLog(models.Model):
         related_name='+',
         db_constraint=False,
     )
+    is_success = models.BooleanField(_('操作成功'), default=True)
     md5 = models.CharField(verbose_name='MD5', max_length=128, default='')
 
     created_at = models.DateTimeField(_('创建时间'), auto_now_add=True)
