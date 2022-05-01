@@ -1,3 +1,5 @@
+from type import Iterable
+
 from ..models import {{camel_case_app_name}}
 
 
