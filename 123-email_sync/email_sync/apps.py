@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class EmailSyncConfig(AppConfig):
     name = 'email_sync'
-    verbose_name = '邮件同步'
+    verbose_name = '数据同步（邮件）'

@@ -4,7 +4,6 @@ from django.urls import path, reverse
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 
-from .models import CustomModel
 from .models import EmailSyncLog
 
 from .email_send import send_email
@@ -13,7 +12,7 @@ from .exceptions import EmailSyncError
 
 
 class EmailSyncLogAdmin(admin.ModelAdmin):
-    list_display = ('sync_at', 'sync_user')
+    list_display = ('operate_at', 'operater')
 
     change_list_template = 'admin/email_sync/email_sync/change_list.html'
 
@@ -69,4 +68,3 @@ class EmailSyncLogAdmin(admin.ModelAdmin):
 
 
 admin.site.register(EmailSyncLog, EmailSyncLogAdmin)
-admin.site.register(CustomModel)
