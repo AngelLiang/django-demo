@@ -122,7 +122,11 @@ def get_content(msg):
 
 
 def read_email():
-    server = poplib.POP3(pop3_server)
+    try:
+        server = poplib.POP3(pop3_server)
+    except ConnectionRefusedError:
+        raise EmailSyncError('服务器连接失败')
+
     # server.set_debuglevel(1)
     server.user(email)
     server.pass_(password)
