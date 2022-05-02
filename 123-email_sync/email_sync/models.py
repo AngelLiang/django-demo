@@ -48,25 +48,4 @@ class EmailSyncLog(models.Model):
         )
 
     def __str__(self):
-        return self.sync_at
-
-
-# class CustomModel(models.Model):
-#     name = models.CharField('名称', max_length=128, default='')
-#     created_at = models.DateTimeField(_('创建时间'), auto_now_add=True)
-#     updated_at = models.DateTimeField(_('更新时间'), auto_now=True)
-
-#     class Meta:
-#         verbose_name = _('自定义模型')
-#         verbose_name_plural = _('自定义模型')
-#         default_permissions = ()
-#         permissions = (
-#             # 功能权限
-#             ('add_custommodel', _('允许添加自定义模型')),
-#             ('view_custommodel', _('允许查看自定义模型')),
-#             ('change_custommodel', _('允许修改自定义模型')),
-#             ('delete_custommodel', _('允许删除自定义模型')),
-#         )
-
-#     def __str__(self):
-#         return self.name
+        return str(self.operate_at)
