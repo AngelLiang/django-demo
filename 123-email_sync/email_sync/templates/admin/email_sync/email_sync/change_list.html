@@ -16,14 +16,14 @@
 
         <li>
           {% url cl.opts|admin_urlname:'upload_data' as upload_data_url %}
-          <a href="{% add_preserved_filters upload_data_url %}" onclick="self.parent.app.$msgbox('msg')">
+          <a href="{% add_preserved_filters upload_data_url %}" onclick="return window.confirm('确定要上传数据？')">
             上传数据
           </a>
         </li>
 
         <li>
           {% url cl.opts|admin_urlname:'download_data' as download_data_url %}
-          <a href="{% add_preserved_filters download_data_url %}" onclick="self.parent.app.$msgbox('msg')">
+          <a href="{% add_preserved_filters download_data_url %}" onclick="return window.confirm('确定要下载数据？')">
             下载数据
           </a>
         </li>
