@@ -13,6 +13,7 @@ from .services import emailsynclog_add_upload_log, emailsynclog_add_download_log
 
 
 class EmailSyncLogAdmin(admin.ModelAdmin):
+    sortable_by = ('operate_at',)
     list_filter = ('operate_type', 'is_success')
     list_display = ('operate_at', 'operate_type', 'is_success', 'operater')
 
