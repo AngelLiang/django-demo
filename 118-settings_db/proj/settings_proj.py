@@ -8,7 +8,7 @@ TIME_ZONE = 'Asia/Shanghai'
 INSTALLED_APPS = [
 ] + INSTALLED_APPS
 
-DB_MAPPING = {
+DB_CONFIGS = {
     'sqlite': {
         'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.sqlite3'),
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
@@ -33,5 +33,5 @@ DB_MAPPING = {
 
 DB_TYPE = os.getenv('DB_TYPE', 'sqlite')
 DATABASES = {
-    'default': DB_MAPPING[DB_TYPE],
+    'default': DB_CONFIGS[DB_TYPE],
 }
