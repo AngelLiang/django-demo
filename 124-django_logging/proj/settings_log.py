@@ -92,19 +92,24 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,  # 是否向更高级别的logger传递
         },
+        # 记录与请求处理相关的消息
+        # 5XX 为 ERROR
+        # 4XX 为 WARNING
+        # example: [WARNING][2022-05-05 09:32:00,676][log.py:228]Not Found: /404
         'django.request': {
             'handlers': ['console'],
-            'level': 'ERROR',
-            'propagate': False,
+            'level': 'DEBUG',
+            'propagate': True,
         },
         'django.template': {
             'handlers': ['console'],
             'level': 'ERROR',
         },
+        # 请求执行的每个应用程序级别的 SQL 语句都会在该DEBUG级别记录到此记录器。
         'django.db.backends': {
             'handlers': ['console'],
             'level': 'ERROR',
-            'propagate': False,
+            'propagate': True,
         },
         # 'MYAPP': {
         #     'handlers': ['console'],
