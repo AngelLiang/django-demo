@@ -24,4 +24,9 @@
 | 117  | apiadmin            | apiadmin使用示例                           |
 | 118  | settings_db         | 配置多个数据库示例                         |
 | 119  | django_redis        | django使用redis作为缓存示例                |
+| 120  | object_import_item  | 对象导入明细示例                           |
+| 121  | dumpdata            | 数据导出示例                               |
+| 122  | django-dbbackup     | django-dbbackup demo                       |
+| 123  | email_sync          | 邮件同步功能                               |
+| 124  | django_logging      | django的日志示例                       |
 
