@@ -1,0 +1,62 @@
+{% load i18n static admin_list %}
+{% load simpletags %}
+
+{% if spec|get_date_type == 'date' or spec|get_date_type == 'datetime' %}
+    {% comment %} 如果是日期类型或时间类型 {% endcomment %}
+    <el-date-picker class="simpleui-form-item"
+            size="small"
+            v-model="{{ spec.field_path }}"
+            @change="change{{ spec|get_date_type|capfirst }}"
+            type="{{ spec|get_date_type }}range"
+            start-placeholder="{{ spec.title }}"
+            end-placeholder="{{ spec.title }}">
+    </el-date-picker>
+
+    <input type="hidden" v-model="{{ spec.field_generic }}gte"
+            name="{{ spec.field_generic }}gte"/>
+    <input type="hidden" v-model="{{ spec.field_generic }}lte"
+            name="{{ spec.field_generic }}lte"/>
+
+{% elif spec|has_filter %}
+    <input type="hidden" v-model="{{ spec.parameter_name }}" name="{{ spec.parameter_name }}"/>
+    <el-select size="small" class="simpleui-form-item" filterable v-model="{{ spec.parameter_name }}" clearable placeholder="{{ spec.title }}">
+        {% for option in spec.lookup_choices %}
+            <el-option label="{{ option.1 }}" value="{{ option.0 }}"></el-option>
+        {% endfor %}
+    </el-select>
+
+{% else %}
+
+    <input type="hidden" v-model="{{ spec.lookup_kwarg }}" name="{{ spec.lookup_kwarg }}"/>
+    <el-select size="small" class="simpleui-form-item" filterable v-model="{{ spec.lookup_kwarg }}" clearable
+                placeholder="{{ spec.title }}">
+        {% if spec|get_date_type == 'time' %}
+            {% comment %} 时间类型 {% endcomment %}
+            {% for option in spec.lookup_choices %}
+                <el-option label="{{ option }}" value="{{ option|to_str }}"></el-option>
+            {% endfor %}
+        {% elif spec.lookup_choices %}
+            {% comment %} 查询类型 {% endcomment %}
+            {% if spec.lookup_choices.query %}
+                {% for option in spec.lookup_choices %}
+                    <el-option label="{{ option }}" value="{{ option }}"></el-option>
+                {% endfor %}
+            {% else %}
+                {% for option in spec.lookup_choices %}
+                    <el-option label="{{ option.1 }}" value="{{ option.0 }}"></el-option>
+                {% endfor %}
+            {% endif %}
+        {% elif spec.field.choices %}
+            {% comment %} choices类型 {% endcomment %}
+            {% for option in spec.field.choices %}
+                <el-option label="{{ option.1 }}" value="{{ option.0 }}"></el-option>
+            {% endfor %}
+        {% else %}
+            {% get_boolean_choices as choices %}
+            {% for c in choices %}
+                <el-option label="{{ c.1 }}" value="{{ c.0 }}"></el-option>
+            {% endfor %}
+        {% endif %}
+    </el-select>
+
+{% endif %}

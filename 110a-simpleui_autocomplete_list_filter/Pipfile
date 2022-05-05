@@ -1,0 +1,16 @@
+[[source]]
+name = "pypi"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+django = "<3.0"
+django-simpleui = "*"
+django-autocomplete-light = "==3.9.4"
+admin-auto-filters = {editable = true,path = "./../packages/admin_auto_filters"}
+autocomplete-light-utils = {editable = true,path = "./../packages/autocomplete_light_utils"}
+
+[requires]
+python_version = "3.6"
