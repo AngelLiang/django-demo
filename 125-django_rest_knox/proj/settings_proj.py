@@ -25,4 +25,6 @@ REST_KNOX = {
     'USER_SERIALIZER': None,
     # 每次使用令牌时是否将令牌到期时间延长
     'AUTO_REFRESH': False,
+    # Token 前缀
+    'AUTH_HEADER_PREFIX': 'Token',
 }
