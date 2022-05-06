@@ -1,8 +1,9 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from admin_auto_filters.filters import AutocompleteFilterFactory
+from admin_auto_filters_utils.filters import AutocompleteFilterFactory
 from .models import Post
+
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'creator', 'is_public', 'created_at')
@@ -12,5 +13,6 @@ class PostAdmin(admin.ModelAdmin):
         'is_public',
         'created_at',
     )
+
 
 admin.site.register(Post, PostAdmin)

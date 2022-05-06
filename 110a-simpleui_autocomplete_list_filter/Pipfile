@@ -9,8 +9,9 @@ verify_ssl = true
 django = "<3.0"
 django-simpleui = "*"
 django-autocomplete-light = "==3.9.4"
-admin-auto-filters = {editable = true,path = "./../packages/admin_auto_filters"}
 autocomplete-light-utils = {editable = true,path = "./../packages/autocomplete_light_utils"}
+admin-auto-filters-utils = {editable = true,path = "./../packages/admin_auto_filters_utils"}
+django-admin-autocomplete-filter = "*"
 
 [requires]
 python_version = "3.6"

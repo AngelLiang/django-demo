@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d752e0a4bfb49e0cdffdad1fc5eaf32c4709540868a42035c61080046e281801"
+            "sha256": "6decc250278c6af1ab5d630741944190a47d3e9bf297b7ed8f2f2e7cead96459"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,9 +16,9 @@
         ]
     },
     "default": {
-        "admin-auto-filters": {
+        "admin-auto-filters-utils": {
             "editable": true,
-            "path": "./../packages/admin_auto_filters"
+            "path": "./../packages/admin_auto_filters_utils"
         },
         "autocomplete-light-utils": {
             "editable": true,
@@ -31,6 +31,14 @@
             ],
             "index": "pypi",
             "version": "==2.2.28"
+        },
+        "django-admin-autocomplete-filter": {
+            "hashes": [
+                "sha256:5a8c9a7016e03104627b80b40811dcc567f26759971e4407f933951546367ba0",
+                "sha256:b2a71be2c4a68f828289eb51f71316dbdfac00a1843f53df1fbe4767aad2e3c0"
+            ],
+            "index": "pypi",
+            "version": "==0.7.1"
         },
         "django-autocomplete-light": {
             "hashes": [
