@@ -1,19 +1,16 @@
 from django.contrib.auth.signals import user_logged_in, user_logged_out
 from django.utils import timezone
 
-
 from knox.views import LoginView as KnoxLoginView
 from knox.views import LogoutView as KnoxLogoutView
 from knox.views import LogoutAllView as KnoxLogoutAllView
 from knox.auth import TokenAuthentication
 from knox.models import AuthToken
 
-
 from rest_framework import status
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-
 
 
 class LoginView(KnoxLoginView):
@@ -40,8 +37,11 @@ class LoginView(KnoxLoginView):
             token = request.user.auth_token_set.filter(expiry__gt=now)
             if token.count() >= token_limit_per_user:
                 return Response(
-                    {"error": "Maximum amount of tokens allowed per user exceeded."},
-                    status=status.HTTP_403_FORBIDDEN
+                    {
+                        'code': 40000,
+                        "message": "Maximum amount of tokens allowed per user exceeded."
+                    },
+                    status=status.HTTP_200_OK
                 )
         token_ttl = self.get_token_ttl()
         instance, token = AuthToken.objects.create(request.user, token_ttl)
