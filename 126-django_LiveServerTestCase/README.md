@@ -1,3 +1,4 @@
+# django 使用 LiveServerTestCase 测试示例
 
 运行测试
 
