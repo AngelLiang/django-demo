@@ -12,6 +12,3 @@ INSTALLED_APPS = INSTALLED_APPS + [
     'river',
     'ticket',
 ]
-
-# from river_patch.monkey_patch import monkey_patch
-# monkey_patch()
