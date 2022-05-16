@@ -1,4 +1,5 @@
 django-environ
 whitenoise
-djangorestframework
 waitress
+djangorestframework
+djangorestframework-camel-case
