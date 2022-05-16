@@ -135,5 +135,7 @@ from config.settings.celery import *  # noqa
 from config.settings.db import *  # noqa
 from config.settings.celery import *  # noqa
 from config.settings.simpleui import *  # noqa
+from config.settings.drf import *  # noqa
+from config.settings.swagger import *  # noqa
 
 from config.settings.files_and_storages import *  # noqa

@@ -24,7 +24,7 @@ env.read_env(os.path.join(BASE_DIR, ".env"))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 't8oxl&r+en2odq-6!o@*e5w8wf^ua_o(4o1ba)mg3u5rdb8i$z'
+SECRET_KEY = 'h$7#8d5y=71#3%cr!y&#^6v*j(ed3t0%=p4-e_0688axitx%wj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -135,5 +135,7 @@ from config.settings.celery import *  # noqa
 from config.settings.db import *  # noqa
 from config.settings.celery import *  # noqa
 from config.settings.simpleui import *  # noqa
+from config.settings.drf import *  # noqa
+from config.settings.swagger import *  # noqa
 
 from config.settings.files_and_storages import *  # noqa
