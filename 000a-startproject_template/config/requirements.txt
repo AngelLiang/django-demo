@@ -1,4 +1,0 @@
-django-environ
-whitenoise
-djangorestframework
-waitress

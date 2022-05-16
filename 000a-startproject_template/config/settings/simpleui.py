@@ -1,4 +1,0 @@
-SIMPLEUI_HOME_INFO = False
-SIMPLEUI_ICON = {
-    
-}
