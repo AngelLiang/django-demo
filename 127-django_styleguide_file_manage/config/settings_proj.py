@@ -11,6 +11,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # 当模型的FileField或ImageField字段有变动或删除模型时，会自动删除旧文件
+    'django_cleanup.apps.CleanupConfig',
     'files',
 ]
 
