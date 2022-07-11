@@ -43,5 +43,5 @@
 | 126  | django_LiveServerTestCase      | django使用LiveServerTestCase进行测试示例   |
 | 126a | django_LiveServerTestCase_page | django使用LiveServerTestCase登录admin示例  |
 | 127  | django_styleguide_file_manage  | django styleguide的文件管理app示例         |
-| 128  | django_styleguide_file_manage  | django 软删除                              |
+| 128  | softdelete                     | django 软删除                              |
 | 129  | custom_adminsite               | django 客制化 adminsite                    |
