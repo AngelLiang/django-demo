@@ -45,3 +45,4 @@
 | 127  | django_styleguide_file_manage  | django styleguide的文件管理app示例         |
 | 128  | softdelete                     | django 软删除                              |
 | 129  | custom_adminsite               | django 客制化 adminsite                    |
+| 130  | manage_inspectdb               | django 使用 manage.py inspectdb 命令示例   |
