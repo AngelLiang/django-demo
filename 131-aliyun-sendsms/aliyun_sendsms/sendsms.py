@@ -10,6 +10,7 @@ from alibabacloud_dysmsapi20170525 import models as dysmsapi_20170525_models
 from alibabacloud_tea_openapi.client import TeaException
 
 from django.conf import settings
+from django.core.cache import cache as django_cache
 
 ALIYUN_ACCESS_KEY_ID = getattr(settings, 'ALIYUN_ACCESS_KEY_ID', None)
 ALIYUN_ACCESS_KEY_SECRET = getattr(settings, 'ALIYUN_ACCESS_KEY_SECRET', None)
@@ -37,6 +38,7 @@ class AliyunSendSms:
 
     def __init__(self, access_key_id=None, access_key_secret=None, template_code=None,
                  sign_name=None,
+                 cache=django_cache,
                  endpoint='dysmsapi.aliyuncs.com'):
         self.access_key_id = access_key_id or ALIYUN_ACCESS_KEY_ID
         self.access_key_secret = access_key_secret or ALIYUN_ACCESS_KEY_SECRET
@@ -48,6 +50,8 @@ class AliyunSendSms:
 
         self.client = None
         self.send_sms_request = None
+        self.cache = cache
+        self.timeout = 5 * 60
 
         self.validate_input_param()
         self.init_client()
@@ -106,3 +110,14 @@ class AliyunSendSms:
             logger.exception(e)
             return False
         return res
+
+    def record_phone(self, phone, code, timeout=None):
+        """记录手机号和验证码"""
+        if not timeout:
+            timeout = self.timeout
+        self.cache.set(phone, code, timeout)
+
+    def validate_phone(self, phone, code):
+        """校验手机号和验证码"""
+        res = self.cache.get(phone)
+        return res == code
