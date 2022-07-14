@@ -15,4 +15,4 @@ class Command(BaseCommand):
         phone = options['phone']
         aliyun_send_sms = AliyunSendSms()
         code = aliyun_send_sms.gen_code()
-        aliyun_send_sms.sendmsg_login_code(phone, code)
+        aliyun_send_sms.sendmsg_code(phone, code)

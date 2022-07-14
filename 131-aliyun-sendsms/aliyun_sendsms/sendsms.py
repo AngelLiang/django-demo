@@ -99,8 +99,8 @@ class AliyunSendSms:
         )
         return self.client.send_sms(self.send_sms_request)
 
-    def sendmsg_login_code(self, phone, code):
-        """发送登录验证码"""
+    def sendmsg_code(self, phone, code):
+        """发送验证码"""
         template_param = json.dumps({"code": code})
         msg = f'{phone} send {code}'
         logger.info(msg)
