@@ -15,6 +15,25 @@ argon2 = ["argon2-cffi (>=16.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "psycopg2-binary"
+version = "2.9.3"
+description = "psycopg2 - Python-PostgreSQL Database Adapter"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
+name = "python-dotenv"
+version = "0.20.0"
+description = "Read key-value pairs from a .env file and set them as environment variables"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[package.extras]
+cli = ["click (>=5.0)"]
+
+[[package]]
 name = "pytz"
 version = "2022.1"
 description = "World timezone definitions, modern and historical"
@@ -30,16 +49,41 @@ category = "main"
 optional = false
 python-versions = ">=3.5"
 
+[[package]]
+name = "waitress"
+version = "2.0.0"
+description = "Waitress WSGI server"
+category = "main"
+optional = false
+python-versions = ">=3.6.0"
+
+[package.extras]
+docs = ["Sphinx (>=1.8.1)", "docutils", "pylons-sphinx-themes (>=1.0.9)"]
+testing = ["pytest", "pytest-cover", "coverage (>=5.0)"]
+
+[[package]]
+name = "whitenoise"
+version = "5.3.0"
+description = "Radically simplified static file serving for WSGI applications"
+category = "main"
+optional = false
+python-versions = ">=3.5, <4"
+
+[package.extras]
+brotli = ["brotli"]
+
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "65476c2bc1a36fbe266ef2a3fb58e91d4ed0d2ee0948af9fcd8301967ba7ac4d"
+content-hash = "d96de0253be52dd8a9034ae560e92262d6c98edb5b97812510fc79a5e82d15f2"
 
 [metadata.files]
 django = [
     {file = "Django-2.2.28-py3-none-any.whl", hash = "sha256:365429d07c1336eb42ba15aa79f45e1c13a0b04d5c21569e7d596696418a6a45"},
     {file = "Django-2.2.28.tar.gz", hash = "sha256:0200b657afbf1bc08003845ddda053c7641b9b24951e52acd51f6abda33a7413"},
 ]
+psycopg2-binary = []
+python-dotenv = []
 pytz = [
     {file = "pytz-2022.1-py2.py3-none-any.whl", hash = "sha256:e68985985296d9a66a881eb3193b0906246245294a881e7c8afe623866ac6a5c"},
     {file = "pytz-2022.1.tar.gz", hash = "sha256:1e760e2fe6a8163bc0b3d9a19c4f84342afa0a2affebfaa84b01b978a02ecaa7"},
@@ -47,4 +91,12 @@ pytz = [
 sqlparse = [
     {file = "sqlparse-0.4.2-py3-none-any.whl", hash = "sha256:48719e356bb8b42991bdbb1e8b83223757b93789c00910a616a071910ca4a64d"},
     {file = "sqlparse-0.4.2.tar.gz", hash = "sha256:0c00730c74263a94e5a9919ade150dfc3b19c574389985446148402998287dae"},
+]
+waitress = [
+    {file = "waitress-2.0.0-py3-none-any.whl", hash = "sha256:29af5a53e9fb4e158f525367678b50053808ca6c21ba585754c77d790008c746"},
+    {file = "waitress-2.0.0.tar.gz", hash = "sha256:69e1f242c7f80273490d3403c3976f3ac3b26e289856936d1f620ed48f321897"},
+]
+whitenoise = [
+    {file = "whitenoise-5.3.0-py2.py3-none-any.whl", hash = "sha256:d963ef25639d1417e8a247be36e6aedd8c7c6f0a08adcb5a89146980a96b577c"},
+    {file = "whitenoise-5.3.0.tar.gz", hash = "sha256:d234b871b52271ae7ed6d9da47ffe857c76568f11dd30e28e18c5869dbd11e12"},
 ]

@@ -7,6 +7,10 @@ authors = ["Your Name <you@example.com>"]
 [tool.poetry.dependencies]
 python = "^3.6"
 Django = "<3.0"
+python-dotenv = "^0.20.0"
+waitress = "^2.0"
+whitenoise = "^5.0"
+psycopg2-binary = "^2.9"
 
 [tool.poetry.dev-dependencies]
 

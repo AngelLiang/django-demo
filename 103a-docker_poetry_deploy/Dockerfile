@@ -19,9 +19,11 @@ WORKDIR /usr/src/app
 # Copy local code to the container image.
 COPY . .
 
+RUN python3 -m pip install --upgrade pip
 RUN pip3 install poetry -i https://mirrors.aliyun.com/pypi/simple/
 RUN poetry config virtualenvs.create false
 RUN poetry install --no-dev
-RUN python3 manage.py collectstatic --noinput
+RUN poetry run python3 manage.py collectstatic --noinput
 
-CMD ["python3", "manage.py", "runserver"]
+CMD ["poetry", "run", "python", "manage.py", "runserver", "0.0.0.0:8000" ]
+# CMD ["poetry", "run", "waitress-serve", "--listen=0.0.0.0:8000", "proj.wsgi:application"]
