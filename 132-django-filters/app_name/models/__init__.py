@@ -1,0 +1,1 @@
+from .{{app_name}} import {{camel_case_app_name}}

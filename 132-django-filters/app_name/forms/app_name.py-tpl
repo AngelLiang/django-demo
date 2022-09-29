@@ -1,0 +1,10 @@
+from django import forms
+
+from ..models import {{camel_case_app_name}}
+
+
+class {{camel_case_app_name}}Form(forms.ModelForm):
+
+    class Meta:
+        model = {{camel_case_app_name}}
+        fields = '__all__'
