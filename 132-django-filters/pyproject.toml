@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "docker_poetry_deploy"
+name = "132-django-filters"
 version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
@@ -7,10 +7,10 @@ authors = ["Your Name <you@example.com>"]
 [tool.poetry.dependencies]
 python = "^3.6"
 Django = "<3.0"
-python-dotenv = "^0.20.0"
-waitress = "^2.0"
-whitenoise = "^5.0"
-psycopg2-binary = "^2.9"
+django-filter = "^21.1"
+djangorestframework = "^3.0"
+drf-yasg = "^1.21.4"
+django-import-export = "^2.6"
 
 [tool.poetry.dev-dependencies]
 
