@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "134-django_ninja"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[[tool.poetry.source]]
+name = "aliyun"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Django = "<3.0"
+django-ninja = "^0.22.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
