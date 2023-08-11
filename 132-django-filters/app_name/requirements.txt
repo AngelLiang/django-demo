@@ -1,3 +1,0 @@
-django-import-export
-djangorestframework
-drf-yasg
