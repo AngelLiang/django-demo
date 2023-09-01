@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "202-django-ninja-login"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "202_django_ninja_login"}]
+
+[[tool.poetry.source]]
+name = "aliyun"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.2"
+django-ninja = "^0.22.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
