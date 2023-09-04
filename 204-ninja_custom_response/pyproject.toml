@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "204-ninja-custom-response"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "204_ninja_custom_response"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.2"
+django-ninja = "^0.22.2"
+orjson = "^3.9.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
