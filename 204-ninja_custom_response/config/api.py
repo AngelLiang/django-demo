@@ -1,10 +1,10 @@
-import code
 from typing import Dict, List, Optional
 from urllib import response
 import orjson
 from ninja import NinjaAPI
 from ninja.renderers import BaseRenderer
 from ninja import Schema, ModelSchema
+from ninja import Field
 
 class ORJSONRenderer(BaseRenderer):
     media_type = "application/json"
@@ -46,8 +46,35 @@ class UserListOut(Schema):
     data: Data
 
 
+# def make_response_schema(class_name:str, data_schema):
+#     # 创建Data内部类
+#     # 先创建一个简单的Data类
+#     class Data(Schema):
+#         pass
+    
+#     # 动态地给Data添加字段
+#     Data.__annotations__ = {
+#         'records': List[data_schema],
+#         'total': int
+#     }
+#     Data.records = List[data_schema]
+#     Data.total = int
+
+#     # # 创建外部类并添加Data作为其属性
+#     return type(
+#         class_name, 
+#         (Schema,), 
+#         {
+#             'code': int,
+#             'message': str,
+#             'data': Data
+#         }
+#     )
+
+# UserListOut = make_response_schema('UserListOut', UserSchema)
+
 @api.get('/users', response=UserListOut)
-def list_users2(request):
+def list_users(request):
     user_list = User.objects.all()
     user_total = user_list.count()
     records = [UserSchema.from_orm(user).dict() for user in user_list]
