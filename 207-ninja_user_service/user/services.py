@@ -22,18 +22,18 @@ class UserService:
         records = [self.ListOut.from_orm(user).dict() for user in object_list]
         return records, object_total
 
-    def get_by_id(self, pk) -> Dict:
+    def get_by_id(self, id) -> Dict:
         qs = self.get_queryset()
-        object = qs.filter(id=pk).first()
+        object = qs.filter(id=id).first()
         if not object:
             raise Http404()
         return self.DetailOut.from_orm(object).dict()
 
-    def update_by_id(self, pk, data) -> Dict:
+    def update_by_id(self, id, data) -> Dict:
         qs = self.get_queryset()
-        object = qs.filter(id=pk).first()
+        object = qs.filter(id=id).first()
         if not object:
             raise Http404()
 
-    def delete_by_id(self, pk):
+    def delete_by_id(self, id):
         pass
