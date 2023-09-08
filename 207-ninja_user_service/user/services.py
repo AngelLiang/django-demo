@@ -29,11 +29,11 @@ class UserService:
             raise Http404()
         return self.DetailOut.from_orm(object).dict()
 
-    def update_by_id(self, pk) -> Dict:
+    def update_by_id(self, pk, data) -> Dict:
         qs = self.get_queryset()
         object = qs.filter(id=pk).first()
-        if object:
-            pass
+        if not object:
+            raise Http404()
 
     def delete_by_id(self, pk):
         pass

@@ -1,19 +1,24 @@
-from urllib import response
 from ninja import Router
 from user.services import UserService
 from user.schemas import UserOut
 
 router = Router()
 
-def make_records_response(records, total, code=0, message='success'):
+
+def make_response(data, code=0, message='success'):
     return {
         'code': code,
         'message':message,
-        'data': {
-            'records': records,
-            'total': total
-        }
+        'data': data
     }
+
+def make_records_response(records, total, code=0, message='success'):
+    data={
+        'records': records,
+        'total': total
+    }
+    return make_response(data,code,message)
+
 
 @router.get('/')
 def list_user(request):
@@ -21,6 +26,7 @@ def list_user(request):
     return make_records_response(records, total)
 
 
-@router.get('/{userId}', response=UserOut)
+@router.get('/{userId}')
 def get_user_detail(request, userId: int):
-    return UserService(request).get_by_id(userId)
+    data = UserService(request).get_by_id(userId)
+    return make_response(data=data)
