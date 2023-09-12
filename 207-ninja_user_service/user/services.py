@@ -19,7 +19,7 @@ class UserService:
         qs = self.get_queryset()
         object_list = qs.all()
         object_total = object_list.count()
-        records = [self.ListOut.from_orm(user).dict() for user in object_list]
+        records = [self.ListOut.from_orm(object).dict() for object in object_list]
         return records, object_total
 
     def get_by_id(self, id) -> Dict:
