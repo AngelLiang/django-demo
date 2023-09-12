@@ -5,6 +5,7 @@ from ninja import NinjaAPI
 from ninja.renderers import BaseRenderer
 from ninja import Schema, ModelSchema
 from ninja import Field
+from pydantic import create_model
 
 
 class ORJSONRenderer(BaseRenderer):
@@ -47,6 +48,23 @@ class UserSchema(ModelSchema):
 #     data: Data
 
 
+def make_response_schema(class_name: str, data_schema):
+    response_schema_fields = {
+        'code': (int, 0),
+        'message': (str, 'success'),
+        'data': (data_schema, None)
+    }
+    response_schema = create_model(
+        class_name,
+        __config__=None,
+        __base__=Schema,
+        __module__=Schema.__module__,
+        __validators__={},
+        **response_schema_fields
+    )
+    return response_schema
+
+
 def make_records_response_schema(class_name: str, model_schema):
     """
     创建一个如下的类
@@ -63,36 +81,37 @@ def make_records_response_schema(class_name: str, model_schema):
         data: Data
 
     """
-    from pydantic import create_model
 
     data_schema_fields = {
         'records': (List[model_schema], None),
         'total': (int, None)
     }
     data_schema = create_model(
-            'Data',
-            __config__=None,
-            __base__=Schema,
-            __module__=Schema.__module__,
-            __validators__={},
-            **data_schema_fields,
-        )  # type: ignore
-
-    response_schema_fields = {
-        'code': (int, 0),
-        'message': (str, 'success'),
-        'data': (data_schema, None)
-    }
-    response_schema = create_model(
-        class_name,
+        'Data',
         __config__=None,
         __base__=Schema,
         __module__=Schema.__module__,
         __validators__={},
-        **response_schema_fields
-    )
+        **data_schema_fields,
+    )  # type: ignore
+
+    # response_schema_fields = {
+    #     'code': (int, 0),
+    #     'message': (str, 'success'),
+    #     'data': (data_schema, None)
+    # }
+    # response_schema = create_model(
+    #     class_name,
+    #     __config__=None,
+    #     __base__=Schema,
+    #     __module__=Schema.__module__,
+    #     __validators__={},
+    #     **response_schema_fields
+    # )
+    response_schema = make_response_schema(class_name, data_schema)
 
     return response_schema
+
 
 UserListOut = make_records_response_schema('UserListOut', UserSchema)
 
