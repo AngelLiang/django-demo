@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "211-django-q-demo"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "211_django_q_demo"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.2"
+django-q = "^1.3.9"
+
+
+[[tool.poetry.source]]
+name = "aliyun"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+priority = "primary"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
