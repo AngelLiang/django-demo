@@ -1,6 +1,7 @@
 from ninja import Router
 from user.services import UserService
 from user.schemas import UserOut, UserListResponseOut, UserDetailResponseOut, UserUpdateIn
+from user.schemas import UserAddIn
 
 router = Router()
 
@@ -31,6 +32,12 @@ def list_user(request):
 def get_user_detail(request, userId: int):
     data = UserService(request).get_by_id(userId)
     return make_response(data=data)
+
+
+@router.post('/')
+def add_user(request, data: UserAddIn):
+    UserService(request).add_user(data)
+    return make_response()
 
 
 @router.put('/{userId}',)

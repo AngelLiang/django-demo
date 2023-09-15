@@ -1,11 +1,12 @@
 from typing import Dict
 from user.models import User
-from user.schemas import UserOut
+from user.schemas import UserOut, UserAddIn
 from django.http import Http404
 
 
 class UserService:
     Model = User
+    AddIn = UserAddIn
     ListOut = UserOut
     DetailOut = UserOut
 
@@ -29,6 +30,11 @@ class UserService:
         if not object:
             raise Http404()
         return self.DetailOut.from_orm(object).dict()
+
+    def add_user(self, data: AddIn):
+        user = User(username=data.username) # User is django auth.User
+        user.set_password(data.password)
+        user.save()
 
     def update_by_id(self, id, data) -> Dict:
         qs = self.get_queryset()
