@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "213-ninja-field"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "213_ninja_field"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django-ninja = "^0.22.2"
+
+
+[[tool.poetry.source]]
+name = "aliyun"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+priority = "primary"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
