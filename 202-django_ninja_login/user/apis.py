@@ -1,7 +1,13 @@
 from ninja import NinjaAPI
+from .schemas import LoginSchema, TokenSchema
+from .services import LoginService
 
 api = NinjaAPI()
 
-@api.get("/hello")
-def hello(request):
-    return "Hello world"
+
+@api.post("/login", response=TokenSchema)
+def login(request, params: LoginSchema):
+    token = LoginService().login(request,**params.dict())
+    return {
+        'token': token
+    }
