@@ -128,7 +128,6 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': False,
         },
-        },
         # 'scripts': {
         #     'handlers': ['scprits_handler'],
         #     'level': 'ERROR',
