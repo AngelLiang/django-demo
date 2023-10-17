@@ -12,7 +12,7 @@ python -m pip install -r requirements.txt --target dist
 ```
 cp -r app dist/
 cp -r config dist/
-cp manage.py dist/
+cp manage.py dist/__main__.py
 ```
 
 3、打包
