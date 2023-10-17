@@ -10,8 +10,8 @@ python -m pip install -r requirements.txt --target dist
 2、把相关程序拷贝进dist
 
 ```
-cp app dist/
-cp config dist/
+cp -r app dist/
+cp -r config dist/
 cp manage.py dist/
 ```
 
