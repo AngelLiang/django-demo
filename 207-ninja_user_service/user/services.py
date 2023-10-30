@@ -1,6 +1,7 @@
-from typing import Dict
+from typing import Dict, List
 from user.models import User
 from user.schemas import UserOut, UserAddIn
+from user.schemas import UserBatchAddIn
 from django.http import Http404
 
 
@@ -32,9 +33,13 @@ class UserService:
         return self.DetailOut.from_orm(object).dict()
 
     def add_user(self, data: AddIn):
-        user = User(username=data.username) # User is django auth.User
+        user = User(username=data.username)  # User is django auth.User
         user.set_password(data.password)
         user.save()
+
+    def batch_add_user(self, payload: List[UserBatchAddIn]):
+        obj_list = [User(**data.dict()) for data in payload]
+        self.Model.objects.bulk_create(obj_list)
 
     def update_by_id(self, id, data) -> Dict:
         qs = self.get_queryset()
