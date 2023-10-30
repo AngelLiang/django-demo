@@ -21,43 +21,43 @@ class BaseService:
         per_page = params.get('size', None)
         if page and per_page:
             offset = (page - 1) * per_page
-            object_list = queryset[offset: offset + per_page]
-            object_total = queryset.count()
+            obj_list = queryset[offset: offset + per_page]
+            obj_total = queryset.count()
         else:
-            object_list = queryset.all()
-            object_total = object_list.count()
-        return object_list, object_total
+            obj_list = queryset.all()
+            obj_total = obj_list.count()
+        return obj_list, obj_total
 
     def get_list_and_total(self, params: Dict = None):
         qs = self.get_queryset()
-        object_list, object_total = self.paginate_queryset(qs, params)
-        records = [self.ListOut.from_orm(record).dict() for record in object_list]
-        return records, object_total
+        obj_list, obj_total = self.paginate_queryset(qs, params)
+        records = [self.ListOut.from_orm(record).dict() for record in obj_list]
+        return records, obj_total
 
     def get_by_id(self, id):
         qs = self.get_queryset()
-        instance = qs.filter(id=id).first()
-        if not instance:
+        obj = qs.filter(id=id).first()
+        if not obj:
             raise NotFoundError()
-        return instance
-        # return self.DetailOut.from_orm(instance).dict()
+        return obj
+        # return self.DetailOut.from_orm(obj).dict()
 
     def update_by_id(self, id, data) -> Dict:
         qs = self.get_queryset()
-        instance = qs.filter(id=id).first()
-        if not instance:
+        obj = qs.filter(id=id).first()
+        if not obj:
             raise NotFoundError()
         # TODO
 
     def delete_by_id(self, id):
         qs = self.get_queryset()
-        instance = qs.filter(id=id).first()
-        if not instance:
+        obj = qs.filter(id=id).first()
+        if not obj:
             raise NotFoundError()
         # TODO
 
     def add(self, data: Dict):
         # TODO
-        instance = self.Model(**data)
-        instance.save()
-        return instance
+        obj = self.Model(**data)
+        obj.save()
+        return obj
