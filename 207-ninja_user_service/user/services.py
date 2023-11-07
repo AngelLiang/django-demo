@@ -1,6 +1,7 @@
-from typing import Dict
+from typing import Dict, List
 from user.models import User
 from user.schemas import UserOut, UserAddIn
+from user.schemas import UserBatchAddIn
 from django.http import Http404
 
 
@@ -20,34 +21,37 @@ class UserService:
         qs = self.get_queryset()
         object_list = qs.all()
         object_total = object_list.count()
-        records = [self.ListOut.from_orm(object).dict() for object in object_list]
-        # records = object_list
+        records = [obj for obj in object_list]
         return records, object_total
 
     def get_by_id(self, id) -> Dict:
         qs = self.get_queryset()
-        object = qs.filter(id=id).first()
-        if not object:
+        obj = qs.filter(id=id).first()
+        if not obj:
             raise Http404()
-        return self.DetailOut.from_orm(object).dict()
+        return obj
 
     def add_user(self, data: AddIn):
-        user = User(username=data.username) # User is django auth.User
+        user = User(username=data.username)  # User is django auth.User
         user.set_password(data.password)
         user.save()
 
+    def batch_add_user(self, payload: List[UserBatchAddIn]):
+        obj_list = [User(**data.dict()) for data in payload]
+        self.Model.objects.bulk_create(obj_list)
+
     def update_by_id(self, id, data) -> Dict:
         qs = self.get_queryset()
-        instance = qs.filter(id=id).first()
-        if not object:
+        obj = qs.filter(id=id).first()
+        if not obj:
             raise Http404()
         for attr, value in data.dict().items():
-            setattr(instance, attr, value)
-        instance.save()
+            setattr(obj, attr, value)
+        obj.save()
 
     def delete_by_id(self, id):
         qs = self.get_queryset()
-        instance = qs.filter(id=id).first()
-        if not object:
+        obj = qs.filter(id=id).first()
+        if not obj:
             raise Http404()
-        instance.delete()
+        obj.delete()

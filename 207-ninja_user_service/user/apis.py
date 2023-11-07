@@ -1,7 +1,8 @@
+from typing import List
 from ninja import Router
 from user.services import UserService
 from user.schemas import UserOut, UserListResponseOut, UserDetailResponseOut, UserUpdateIn
-from user.schemas import UserAddIn
+from user.schemas import UserAddIn, UserBatchAddIn
 
 router = Router()
 
@@ -9,12 +10,13 @@ router = Router()
 def make_response(data=None, code=0, message='success'):
     return {
         'code': code,
-        'message':message,
+        'message': message,
         'data': data
     }
 
+
 def make_records_response(records, total, code=0, message='success'):
-    data={
+    data = {
         'records': records,
         'total': total
     }
@@ -24,7 +26,6 @@ def make_records_response(records, total, code=0, message='success'):
 @router.get('/', response=UserListResponseOut, by_alias=True)
 def list_user(request):
     records, total = UserService(request).get_list_and_total()
-    print(records)
     return make_records_response(records, total)
 
 
@@ -35,12 +36,18 @@ def get_user_detail(request, userId: int):
 
 
 @router.post('/')
-def add_user(request, data: UserAddIn):
-    UserService(request).add_user(data)
+def add_user(request, payload: UserAddIn):
+    UserService(request).add_user(payload)
     return make_response()
 
 
-@router.put('/{userId}',)
-def update_user(request, userId: int, data: UserUpdateIn):
-    UserService(request).update_by_id(userId, data)
+@router.post('/batch/add')
+def batch_add_user(request, payload: List[UserBatchAddIn]):
+    UserService(request).batch_add_user(payload)
+    return make_response()
+
+
+@router.put('/{userId}')
+def update_user(request, userId: int, payload: UserUpdateIn):
+    UserService(request).update_by_id(userId, payload)
     return make_response()
