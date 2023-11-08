@@ -43,7 +43,7 @@ def init_error_handler(api: NinjaAPI):
         )
 
     @api.exception_handler(ValidationError)
-    def validation_errors(request, exc):
+    def handle_validation_error(request, exc):
         data = {
             'code': 4000,
             'message': str(exc),
