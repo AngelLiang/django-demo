@@ -1,0 +1,27 @@
+FROM python:3.10-bullseye
+
+USER 0
+
+# 设置环境变量
+ENV LANG=en_US.UTF-8 LC_ALL=en_US.utf8
+# 设置时区，否则存入到数据库的时间会不正确
+RUN ln -s -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+# 阻止 Python 生成.pyc文件、阻止段错误上启用 Python 回溯
+ENV PYTHONPATH=${PYTHONPATH}:${PWD} PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PYTHONFAULTHANDLER=1
+
+# Create and change to the app directory.
+
+WORKDIR /code
+RUN chown -R 1001:0 /code
+# USER 1001
+
+# Copy local code to the container image.
+COPY . .
+
+ADD sources.list /etc/apt/ 
+RUN apt-get update -y && apt-get install python3-dev default-libmysqlclient-dev build-essential -y
+RUN pip3 install poetry==1.5.1 -i https://mirrors.aliyun.com/pypi/simple/
+RUN poetry config virtualenvs.create false && poetry install --only main
+
+CMD gunicorn -b 0.0.0.0:8000 -w 1 config.wsgi:application
