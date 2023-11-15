@@ -46,8 +46,8 @@ def init_error_handler(api: NinjaAPI):
     def handle_validation_error(request, exc):
         data = {
             'code': 4000,
-            'message': str(exc),
-            'data': None
+            'message': '校验出错',
+            'data': exc.errors
         }
         return api.create_response(
             request,
