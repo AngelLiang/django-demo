@@ -47,14 +47,14 @@ class BaseService:
         obj = qs.filter(id=id).first()
         if not obj:
             raise NotFoundError()
-        # TODO
+        return True
 
     def delete_by_id(self, id):
         qs = self.get_queryset()
         obj = qs.filter(id=id).first()
         if not obj:
             raise NotFoundError()
-        # TODO
+        return True
 
     def add(self, data: Dict):
         # TODO
