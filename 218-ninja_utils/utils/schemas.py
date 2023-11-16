@@ -36,6 +36,8 @@ def make_records_response_schema(class_name: str, model_schema):
         class Data(Schema):
             records: List[UserSchema]
             total: int
+            current: int
+            size: int
 
         code :int = 0
         message: str = 'success'
@@ -45,7 +47,9 @@ def make_records_response_schema(class_name: str, model_schema):
 
     data_schema_fields = {
         'records': (List[model_schema], None),
-        'total': (int, None)
+        'total': (int, None),
+        'current': (int, None),
+        'size': (int, None),
     }
     data_schema = create_model(
         'Data',

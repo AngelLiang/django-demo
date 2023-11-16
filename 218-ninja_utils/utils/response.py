@@ -7,9 +7,11 @@ def make_response(code=0, message='操作成功', data=None):
     }
 
 
-def make_records_response(records, total, code=0, message='操作成功'):
+def make_records_response(records, total, code=0, message='操作成功', current=None, size=None):
     data = {
         'records': records,
-        'total': total
+        'total': total,
+        'current': current,
+        'size': size
     }
     return make_response(code, message, data=data)
