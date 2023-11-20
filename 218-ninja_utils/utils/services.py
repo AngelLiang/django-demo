@@ -40,13 +40,20 @@ class BaseService:
         if not obj:
             raise NotFoundError()
         return obj
-        # return self.DetailOut.from_orm(obj).dict()
+
+    def get_detail(self, id):
+        obj = self.get_by_id(id)
+        return self.DetailOut.from_orm(obj).dict()
 
     def update_by_id(self, id, data) -> Dict:
         qs = self.get_queryset()
         obj = qs.filter(id=id).first()
         if not obj:
             raise NotFoundError()
+        for attr, val in data.items():
+            # getattr(obj, attr, None)
+            setattr(obj, attr, val)
+        obj.save()
         return True
 
     def delete_by_id(self, id):
