@@ -1,5 +1,6 @@
 # 使用 zipapp 打包 django 示例
 
+> 由于django路径问题，打包后无法正常运行pyz文件，但可以运行dist文件夹
 
 1、用 pip 将应用程序的所有依赖项装入 dist 目录
 
