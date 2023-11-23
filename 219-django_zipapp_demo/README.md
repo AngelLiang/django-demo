@@ -19,7 +19,7 @@ cp manage.py dist/__main__.py
 3、打包
 
 ```
-python -m zipapp -p "interpreter" dist
+python -m zipapp -p -c "interpreter" dist
 ```
 
 运行程序
