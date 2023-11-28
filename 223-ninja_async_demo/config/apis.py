@@ -24,9 +24,7 @@ async def say_after_async(request, delay: int, word: str):
 
 @api.get("/get-user-list/async")
 async def get_user_list_async(request):
-    user_list = []
-    async for user in User.objects.all():
-        user_list.append(user)
+    user_list = [user async for user in User.objects.all()]
     return {"data": [{"id": user.id, "username": user.username} for user in user_list]}
 
 
