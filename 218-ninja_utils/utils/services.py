@@ -1,12 +1,13 @@
-from typing import Dict, List
+from typing import Dict, List, Type
 from utils.errors import NotFoundError
-
+from django.db import models
+from pydantic import BaseModel
 
 class BaseService:
-    Model = None
-    AddIn = None
-    ListOut = None
-    DetailOut = None
+    Model: Type[models.Model]
+    AddIn: Type[BaseModel]
+    ListOut: Type[BaseModel]
+    DetailOut: Type[BaseModel]
 
     def __init__(self, request=None) -> None:
         self.request = request
@@ -40,8 +41,8 @@ class BaseService:
 
     def get_list_and_total(self, params: Dict = None, filter_keys: List | None = None):
         qs = self.get_queryset()
+        qs = self.filter_by_params(qs, params, filter_keys)
         obj_list, obj_total = self.paginate_queryset(qs, params)
-        obj_list = self.filter_by_params(obj_list, params, filter_keys)
         records = [self.ListOut.from_orm(record).dict() for record in obj_list]
         return records, obj_total
 
@@ -61,8 +62,10 @@ class BaseService:
         obj = qs.filter(id=id).first()
         if not obj:
             raise NotFoundError()
+        return self.handle_update(obj, data)
+
+    def handle_update(self, obj, data):
         for attr, val in data.items():
-            # getattr(obj, attr, None)
             setattr(obj, attr, val)
         return obj.save()
 
@@ -71,10 +74,13 @@ class BaseService:
         obj = qs.filter(id=id).first()
         if not obj:
             raise NotFoundError()
+        self.handle_delete(obj)
         return True
 
+    def handle_delete(self, obj):
+        obj.delete()
+
     def add(self, data: Dict):
-        # TODO
         obj = self.Model(**data)
         obj.save()
         return obj
