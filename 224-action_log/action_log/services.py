@@ -4,10 +4,7 @@ from typing import Dict
 from action_log.models import ActionLog
 
 
-class ActionLogServic
-
-
-e:
+class ActionLogService:
     Model = ActionLog
 
     def __init__(self, request=None) -> None:
