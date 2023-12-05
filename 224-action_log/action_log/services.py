@@ -58,7 +58,7 @@ class ActionLogService:
         change_data = self.compare_dict(old_dict, new_dict)
         return json.dumps(change_data, default=str)
 
-    def add_add_log(self, obj, fields, action=None, actor=''):
+    def add_add_log(self, obj, fields, action=None, actor='', row_repr=None):
         """添加创建日志"""
         action_log = ActionLog()
         action_log.action = action if action else f'添加{obj._meta.verbose_name}'
@@ -66,10 +66,12 @@ class ActionLogService:
         action_log.actor = actor
         action_log.table_name = obj._meta.db_table
         action_log.row_id = obj.pk
+        if row_repr is None:
+            action_log.row_repr = repr(obj)
         action_log.change_text = self.make_change_text(None, obj, fields)
         action_log.save()
 
-    def add_update_log(self, old, new, fields, action=None, actor=''):
+    def add_update_log(self, old, new, fields, action=None, actor='', row_repr=None):
         """添加更新日志"""
         action_log = ActionLog()
         action_log.action = action if action else f'修改{old._meta.verbose_name}'
@@ -77,15 +79,19 @@ class ActionLogService:
         action_log.actor = actor
         action_log.table_name = old._meta.db_table
         action_log.row_id = old.pk
+        if row_repr is None:
+            action_log.row_repr = repr(old)
         action_log.change_text = self.make_change_text(old, new, fields)
         action_log.save()
 
-    def add_del_log(self, obj, action=None, actor=''):
+    def add_del_log(self, obj, action=None, actor='', row_repr=None):
         """添加删除日志"""
         action_log = ActionLog()
         action_log.action = action if action else f'删除{obj._meta.verbose_name}'
         action_log.type = ActionLog.DELETE
         action_log.actor = actor
         action_log.table_name = obj._meta.db_table
+        if row_repr is None:
+            action_log.row_repr = repr(obj)
         action_log.row_id = obj.pk
         action_log.save()
