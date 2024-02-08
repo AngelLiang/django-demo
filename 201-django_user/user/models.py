@@ -5,6 +5,13 @@ from django.utils.translation import gettext_lazy as _
 
 
 class User(AbstractUser):
+    # username = models.CharField(max_length=150, unique=True)
+    # first_name = models.CharField(max_length=30, blank=True)
+    # last_name = models.CharField(max_length=150, blank=True)
+    # email = models.EmailField(blank=True)
+    # is_staff = models.BooleanField()
+    # is_active = models.BooleanField()
+    # date_joined = models.DateTimeField()
     phone = models.CharField(_('手机号码'), max_length=11, default='', blank=True)
     memo = models.TextField(_('备注'), max_length=1024, default='', blank=True)
 

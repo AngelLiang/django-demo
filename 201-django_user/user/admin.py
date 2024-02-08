@@ -1,15 +1,16 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
-from user.models import User
+# from user.models import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 
 class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         # 个人信息
-        (_('Personal info'), {'fields': ('first_name',
-                                         'last_name', 'email', 'phone')}),
+        (_('Personal info'), {'fields': ('first_name', 'last_name', 'email', 'phone')}),
         # 权限
         (_('Permissions'), {'fields': (
             'groups',
@@ -34,4 +35,5 @@ class UserAdmin(BaseUserAdmin):
     # )
 
 
+# admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
