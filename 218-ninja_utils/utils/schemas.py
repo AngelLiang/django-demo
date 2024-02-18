@@ -51,8 +51,8 @@ def make_records_response_schema(model_schema: object, class_name: str = None):
     data_schema_fields = {
         'records': (List[model_schema], None),
         'total': (int, None),
-        'current': (int, None),
-        'size': (int, None),
+        'current': (int | None, None),
+        'size': (int | None, None),
     }
     data_schema_name = class_name + 'Data'
     data_schema = create_model(
