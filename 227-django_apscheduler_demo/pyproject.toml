@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "django_apscheduler_demo"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^5.0.6"
+django-simpleui = "^2024.4.1"
+django-apscheduler = "^0.6.2"
+
+
+[[tool.poetry.source]]
+name = "aliyun"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+priority = "default"
+
+
+[tool.poetry.group.dev.dependencies]
+autopep8 = "^2.2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
