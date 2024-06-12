@@ -41,14 +41,14 @@ SIMPLEUI_CONFIG = {
             # 'icon': 'fas fa-user-shield',
             'models': [
                 {
-                    'name': 'job executions',
-                    # 'icon': 'fa fa-user',
-                    'url': 'django_apscheduler/djangojobexecution/'
-                },
-                {
-                    'name': 'jobs',
+                    'name': '定时任务',
                     # 'icon': 'fas fa-shield-alt',
                     'url': 'django_apscheduler/djangojob/'
+                },
+                {
+                    'name': '执行记录',
+                    # 'icon': 'fa fa-user',
+                    'url': 'django_apscheduler/djangojobexecution/'
                 }
             ]
         },
