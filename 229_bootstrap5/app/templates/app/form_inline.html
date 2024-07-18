@@ -1,0 +1,20 @@
+{% extends 'app/base.html' %}
+
+{% load django_bootstrap5 %}
+
+{% block title %}
+    Forms
+{% endblock %}
+
+{% block content %}
+
+    <form class="row row-cols-lg-auto g-3 align-items-center" method="post">
+        {% csrf_token %}
+
+        {% bootstrap_form form layout='inline' %}
+
+        {% bootstrap_button button_type="submit" content="OK" %}
+        {% bootstrap_button button_type="reset" content="Cancel" %}
+    </form>
+
+{% endblock %}
