@@ -4,8 +4,6 @@ version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
 license = "MIT"
-readme = "README.md"
-packages = [{include = "210_ninja_token"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
