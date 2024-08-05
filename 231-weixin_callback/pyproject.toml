@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "231-weixin-callback"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "231_weixin_callback"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^5.0.7"
+django-ninja = "^1.2.2"
+python-dotenv = "^1.0.1"
+requests = "^2.32.3"
+beautifulsoup4 = "^4.12.3"
+
+
+[[tool.poetry.source]]
+name = "aliyun"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+priority = "default"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
