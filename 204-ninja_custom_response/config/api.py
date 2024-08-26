@@ -1,10 +1,11 @@
+from pydantic import BaseModel, Field
+from django.contrib.auth import get_user_model
+from typing import Generic, TypeVar, Optional
 from typing import Dict, List, Optional
-from urllib import response
 import orjson
 from ninja import NinjaAPI
 from ninja.renderers import BaseRenderer
 from ninja import Schema, ModelSchema
-from ninja import Field
 from pydantic import create_model
 
 
@@ -20,15 +21,33 @@ class ORJSONRenderer(BaseRenderer):
         # })
         return orjson.dumps(data)
 
+
 api = NinjaAPI(renderer=ORJSONRenderer())
 
 
 @api.get("/hello")
 def hello(request):
-    return {'hello':'world!'}
+    return {'hello': 'world!'}
 
 
-from django.contrib.auth import get_user_model
+DataT = TypeVar("DataT")
+
+
+class ResponseModel(BaseModel, Generic[DataT]):
+    code: int = Field(..., example=0)
+    message: str = Field(..., example="Success")
+    data: Optional[DataT] = Field(None)
+
+
+class Hello(BaseModel):
+    hello: str
+
+
+@api.get("/custom-response", response=ResponseModel[Hello])
+def custom_response(request):
+    return ResponseModel(code=0, message="successfully", data={'hello': 'world!'})
+
+
 User = get_user_model()
 
 
@@ -119,12 +138,13 @@ UserListOut = make_records_response_schema('UserListOut', UserSchema)
 def make_records_response(records, total, code=0, message='success'):
     return {
         'code': code,
-        'message':message,
+        'message': message,
         'data': {
             'records': records,
             'total': total
         }
     }
+
 
 @api.get('/users', response=UserListOut)
 def list_users(request):

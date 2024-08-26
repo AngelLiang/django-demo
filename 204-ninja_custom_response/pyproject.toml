@@ -5,7 +5,6 @@ description = ""
 authors = ["Your Name <you@example.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "204_ninja_custom_response"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -13,6 +12,11 @@ django = "^4.2"
 django-ninja = "^0.22.2"
 orjson = "^3.9.5"
 
+
+[[tool.poetry.source]]
+name = "aliyun"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+priority = "default"
 
 [build-system]
 requires = ["poetry-core"]
