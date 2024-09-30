@@ -7,6 +7,7 @@ from clients.weixin_client.client import WeiXinClient
 
 
 TICKET_CACEH_KEY = 'ticket'
+# 场景值
 LOGIN_SCENE_ID = 1
 
 

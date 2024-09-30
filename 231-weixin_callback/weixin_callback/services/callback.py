@@ -149,6 +149,9 @@ class CallBackService:
         ref: https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Receiving_event_pushes.html#%E6%89%AB%E6%8F%8F%E5%B8%A6%E5%8F%82%E6%95%B0%E4%BA%8C%E7%BB%B4%E7%A0%81%E4%BA%8B%E4%BB%B6
         """
         html_doc = request.body.decode()
+        if not html_doc:
+            logger.debug('html doc empty')
+            return 
         soup = BeautifulSoup(html_doc, features="html.parser")
         logger.debug(soup)
         data = self.parse_scan_qrcode_xml(soup)

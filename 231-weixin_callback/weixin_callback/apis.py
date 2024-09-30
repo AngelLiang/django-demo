@@ -9,9 +9,10 @@ from weixin_callback.services.callback import CallBackService
 from weixin_callback.services.qrcode import QrcodeService
 
 from utils.response import make_response
+from .logger import logger
 
 
-@router.get("/generateSignature", response=SignOut)
+@router.get("/generate-signature", response=SignOut, summary='生成签名')
 def generate_signature(request, url: str, noncestr: str = None, jsapi_ticket: str = None, timestamp: str = None):
     if noncestr is None and jsapi_ticket is None and timestamp is None:
         result = generate_sign_url(url)
@@ -20,8 +21,8 @@ def generate_signature(request, url: str, noncestr: str = None, jsapi_ticket: st
     return make_response(data=result)
 
 
-@router.get("/callback", auth=None, operation_id="get_weixin_callback")
-@router.post("/callback", auth=None, operation_id='post_weixin_callback')
+@router.get("/callback", auth=None, operation_id="get_weixin_callback", summary='微信回调接口')
+@router.post("/callback", auth=None, operation_id='post_weixin_callback', summary='微信回调接口')
 def weixin_callback(request, signature: str, timestamp: str, nonce: str, echostr: int = None, openid: str = None):
     """微信回调接口
 
@@ -34,10 +35,11 @@ def weixin_callback(request, signature: str, timestamp: str, nonce: str, echostr
         if response_string:
             return HttpResponse(response_string)
         return HttpResponse(echostr)
+    logger.error('weixin callback check sign error')
     return HttpResponse('')
 
 
-@router.get("/login/qrcode/generate/image")
+@router.get("/generate-login-qrcode-image", summary='生成登录二维码图片')
 def get_login_qrcode_image(request, ticket: str = None):
     response_content = QrcodeService().get_login_qrcode_image(ticket=ticket)
     http_response = HttpResponse(
@@ -47,13 +49,13 @@ def get_login_qrcode_image(request, ticket: str = None):
     return http_response
 
 
-@router.get("/login/qrcode/generate")
+@router.get("/generate-login-qrcode", summary='生成登录二维码')
 def generate_login_qrcode(request):
     data = QrcodeService().create_login_qrcode()
     return make_response(data=data)
 
 
-@router.get("/login/qrcode/monitor", response={400: dict, 200: dict})
+@router.get("/monitor-login-qrcode", response={400: dict, 200: dict}, summary='监听登录二维码')
 def monitor_login_qrcode(request, ticket: str):
     token = QrcodeService().get_ticket_token(ticket)
     if not token:
